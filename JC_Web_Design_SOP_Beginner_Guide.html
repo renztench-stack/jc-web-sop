@@ -1,0 +1,1726 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JC Web Design SOP — A Beginner's Guide</title>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600;9..144,700;9..144,800&family=Inter+Tight:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink: #1a1a1a;
+  --paper: #faf7f2;
+  --paper-2: #f3ede2;
+  --rule: #d9cfbe;
+  --accent: #c2410c;
+  --accent-soft: #fef3e8;
+  --good: #166534;
+  --good-soft: #dcfce7;
+  --warn: #a16207;
+  --warn-soft: #fef9c3;
+  --bad: #991b1b;
+  --bad-soft: #fee2e2;
+  --muted: #6b6357;
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Inter Tight', sans-serif;
+  background: var(--paper);
+  color: var(--ink);
+  line-height: 1.65;
+  font-size: 17px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ─── Layout ─── */
+.wrap {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 32px;
+}
+
+@media (max-width: 768px) {
+  .wrap { padding: 0 20px; }
+  body { font-size: 16px; }
+}
+
+/* ─── Header / Hero ─── */
+header.hero {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 80px 0 100px;
+  position: relative;
+  overflow: hidden;
+}
+
+header.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(194, 65, 12, 0.18), transparent 50%),
+    radial-gradient(circle at 80% 70%, rgba(250, 247, 242, 0.05), transparent 40%);
+  pointer-events: none;
+}
+
+.eyebrow {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 13px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 24px;
+  display: inline-block;
+  border: 1px solid rgba(194, 65, 12, 0.4);
+  padding: 6px 14px;
+  border-radius: 100px;
+}
+
+h1.title {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: clamp(2.5rem, 5.5vw, 4.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 24px;
+  position: relative;
+}
+
+h1.title em {
+  font-style: italic;
+  color: var(--accent);
+  font-weight: 400;
+}
+
+.subtitle {
+  font-size: clamp(1.05rem, 1.8vw, 1.25rem);
+  max-width: 640px;
+  color: rgba(250, 247, 242, 0.78);
+  font-weight: 400;
+  position: relative;
+}
+
+.meta-strip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+  margin-top: 48px;
+  padding-top: 32px;
+  border-top: 1px solid rgba(250, 247, 242, 0.15);
+  position: relative;
+}
+
+.meta-item {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  color: rgba(250, 247, 242, 0.6);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+.meta-item strong {
+  color: var(--paper);
+  font-weight: 500;
+  display: block;
+  font-size: 15px;
+  margin-top: 4px;
+  font-family: 'Inter Tight', sans-serif;
+  text-transform: none;
+  letter-spacing: 0;
+}
+
+/* ─── Table of Contents ─── */
+.toc {
+  background: var(--paper-2);
+  padding: 56px 0;
+  border-bottom: 1px solid var(--rule);
+}
+
+.toc h2 {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: 1.6rem;
+  margin-bottom: 8px;
+}
+
+.toc-sub {
+  color: var(--muted);
+  margin-bottom: 32px;
+  font-size: 0.95rem;
+}
+
+.toc-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
+}
+
+.toc-item {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  padding: 14px 18px;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  text-decoration: none;
+  color: var(--ink);
+  transition: all 0.2s ease;
+}
+
+.toc-item:hover {
+  border-color: var(--accent);
+  background: var(--accent-soft);
+  transform: translateX(2px);
+}
+
+.toc-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  color: var(--accent);
+  font-weight: 600;
+  min-width: 22px;
+}
+
+.toc-label {
+  font-weight: 500;
+  font-size: 0.95rem;
+  line-height: 1.3;
+}
+
+/* ─── Sections ─── */
+section.chapter {
+  padding: 88px 0 24px;
+  border-bottom: 1px solid var(--rule);
+}
+
+section.chapter:last-of-type {
+  border-bottom: none;
+  padding-bottom: 88px;
+}
+
+.chapter-header {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 40px;
+  align-items: start;
+  margin-bottom: 48px;
+  max-width: 880px;
+}
+
+@media (max-width: 640px) {
+  .chapter-header { grid-template-columns: 1fr; gap: 16px; }
+}
+
+.chapter-num {
+  font-family: 'Fraunces', serif;
+  font-size: 4.5rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--accent);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+}
+
+.chapter-title-block h2 {
+  font-family: 'Fraunces', serif;
+  font-weight: 500;
+  font-size: clamp(1.8rem, 3.5vw, 2.6rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+  margin-bottom: 14px;
+}
+
+.chapter-intro {
+  color: var(--muted);
+  font-size: 1.05rem;
+  max-width: 580px;
+}
+
+.body {
+  max-width: 720px;
+}
+
+.body h3 {
+  font-family: 'Fraunces', serif;
+  font-weight: 600;
+  font-size: 1.4rem;
+  margin: 40px 0 14px;
+  letter-spacing: -0.01em;
+}
+
+.body h4 {
+  font-family: 'Inter Tight', sans-serif;
+  font-weight: 600;
+  font-size: 1.05rem;
+  margin: 24px 0 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--accent);
+  font-size: 0.85rem;
+}
+
+.body p {
+  margin-bottom: 14px;
+}
+
+.body ul, .body ol {
+  margin: 12px 0 18px 0;
+  padding-left: 22px;
+}
+
+.body li {
+  margin-bottom: 8px;
+}
+
+.body strong { font-weight: 600; }
+
+/* ─── Callouts ─── */
+.callout {
+  background: var(--paper-2);
+  border-left: 3px solid var(--accent);
+  padding: 18px 22px;
+  margin: 22px 0;
+  border-radius: 0 4px 4px 0;
+  font-size: 0.96rem;
+}
+
+.callout-label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--accent);
+  font-weight: 600;
+  margin-bottom: 6px;
+  display: block;
+}
+
+.callout.tip { border-left-color: var(--good); background: var(--good-soft); }
+.callout.tip .callout-label { color: var(--good); }
+
+.callout.warn { border-left-color: var(--warn); background: var(--warn-soft); }
+.callout.warn .callout-label { color: var(--warn); }
+
+.callout.example { border-left-color: var(--ink); background: var(--paper-2); }
+.callout.example .callout-label { color: var(--ink); }
+
+/* ─── Tables ─── */
+.table-wrap {
+  overflow-x: auto;
+  margin: 22px 0;
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+}
+
+th, td {
+  text-align: left;
+  padding: 12px 16px;
+  border-bottom: 1px solid var(--rule);
+  vertical-align: top;
+}
+
+th {
+  background: var(--paper-2);
+  font-weight: 600;
+  font-size: 0.78rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--muted);
+}
+
+tbody tr:last-child td { border-bottom: none; }
+
+tbody tr:hover { background: rgba(194, 65, 12, 0.03); }
+
+td code {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85em;
+  background: var(--paper-2);
+  padding: 2px 6px;
+  border-radius: 3px;
+  color: var(--accent);
+}
+
+/* ─── Code blocks ─── */
+code.inline {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.88em;
+  background: var(--paper-2);
+  padding: 2px 6px;
+  border-radius: 3px;
+  color: var(--accent);
+}
+
+pre.code {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 18px 22px;
+  border-radius: 6px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85rem;
+  overflow-x: auto;
+  margin: 18px 0;
+  line-height: 1.55;
+}
+
+/* ─── Compare grid ─── */
+.compare {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin: 22px 0;
+}
+
+@media (max-width: 640px) {
+  .compare { grid-template-columns: 1fr; }
+}
+
+.compare-card {
+  padding: 18px 20px;
+  border-radius: 4px;
+  font-size: 0.94rem;
+}
+
+.compare-card.do {
+  background: var(--good-soft);
+  border-left: 3px solid var(--good);
+}
+
+.compare-card.dont {
+  background: var(--bad-soft);
+  border-left: 3px solid var(--bad);
+}
+
+.compare-card .label {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  font-weight: 600;
+  margin-bottom: 8px;
+  display: block;
+}
+
+.compare-card.do .label { color: var(--good); }
+.compare-card.dont .label { color: var(--bad); }
+
+/* ─── Checklist ─── */
+ul.checklist {
+  list-style: none;
+  padding-left: 0;
+  margin: 14px 0;
+}
+
+ul.checklist li {
+  padding-left: 30px;
+  position: relative;
+  margin-bottom: 10px;
+}
+
+ul.checklist li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 4px;
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid var(--rule);
+  border-radius: 3px;
+  background: var(--paper);
+}
+
+/* ─── Definition list ─── */
+dl.terms {
+  display: grid;
+  grid-template-columns: minmax(140px, 200px) 1fr;
+  gap: 10px 24px;
+  margin: 18px 0;
+  padding: 22px 24px;
+  background: var(--paper-2);
+  border-radius: 6px;
+  font-size: 0.95rem;
+}
+
+@media (max-width: 600px) {
+  dl.terms { grid-template-columns: 1fr; gap: 4px 0; }
+  dl.terms dd { margin-bottom: 12px; }
+}
+
+dl.terms dt {
+  font-weight: 600;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.85em;
+  color: var(--accent);
+  align-self: start;
+  padding-top: 2px;
+}
+
+dl.terms dd { color: var(--ink); }
+
+/* ─── Phase cards ─── */
+.phases {
+  display: grid;
+  gap: 14px;
+  margin: 22px 0;
+}
+
+.phase {
+  border: 1px solid var(--rule);
+  border-radius: 6px;
+  padding: 20px 24px;
+  background: var(--paper);
+}
+
+.phase-header {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 10px;
+}
+
+.phase-num {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--paper);
+  background: var(--ink);
+  padding: 4px 10px;
+  border-radius: 3px;
+  letter-spacing: 0.1em;
+}
+
+.phase-title {
+  font-family: 'Fraunces', serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+/* ─── Footer ─── */
+footer {
+  background: var(--ink);
+  color: rgba(250, 247, 242, 0.7);
+  padding: 56px 0;
+  text-align: center;
+}
+
+footer .sig {
+  font-family: 'Fraunces', serif;
+  font-style: italic;
+  font-size: 1.4rem;
+  color: var(--paper);
+  margin-bottom: 8px;
+}
+
+footer .small {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+/* ─── Quick links / back to top ─── */
+.back-top {
+  display: inline-block;
+  margin-top: 30px;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--accent);
+  text-decoration: none;
+  border-bottom: 1px solid var(--accent);
+  padding-bottom: 2px;
+}
+
+.back-top:hover { color: var(--ink); border-bottom-color: var(--ink); }
+
+/* ─── Visual scale demo ─── */
+.scale-demo {
+  display: flex;
+  align-items: flex-end;
+  gap: 8px;
+  margin: 18px 0;
+  padding: 22px;
+  background: var(--paper-2);
+  border-radius: 6px;
+  overflow-x: auto;
+}
+
+.scale-bar {
+  background: var(--ink);
+  color: var(--paper);
+  padding: 8px 6px;
+  border-radius: 3px 3px 0 0;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 10px;
+  text-align: center;
+  min-width: 36px;
+  flex-shrink: 0;
+}
+
+.scale-bar.accent { background: var(--accent); }
+</style>
+</head>
+<body>
+
+<!-- ─── HERO ─── -->
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">JC Web Design Standard Operating Procedure</span>
+    <h1 class="title">The complete <em>beginner's guide</em> to building a WordPress website — properly.</h1>
+    <p class="subtitle">Everything you need to know before, during, and after building a website. Written in plain language, with examples you can actually use.</p>
+    <div class="meta-strip">
+      <div class="meta-item">Read time<strong>~25 minutes</strong></div>
+      <div class="meta-item">Skill level<strong>Beginner-friendly</strong></div>
+      <div class="meta-item">Covers<strong>14 core topics</strong></div>
+    </div>
+  </div>
+</header>
+
+<!-- ─── TOC ─── -->
+<nav class="toc">
+  <div class="wrap">
+    <h2>Table of Contents</h2>
+    <p class="toc-sub">Read top to bottom your first time. Use as a reference after that.</p>
+    <div class="toc-grid">
+      <a href="#ch01" class="toc-item"><span class="toc-num">01</span><span class="toc-label">Words You'll Hear (Glossary)</span></a>
+      <a href="#ch02" class="toc-item"><span class="toc-num">02</span><span class="toc-label">Best Approach to Designing a Website</span></a>
+      <a href="#ch03" class="toc-item"><span class="toc-num">03</span><span class="toc-label">Structuring a Website</span></a>
+      <a href="#ch04" class="toc-item"><span class="toc-num">04</span><span class="toc-label">SEO Heading Tags (H1, H2, H3)</span></a>
+      <a href="#ch05" class="toc-item"><span class="toc-num">05</span><span class="toc-label">Header & Footer Standards</span></a>
+      <a href="#ch06" class="toc-item"><span class="toc-num">06</span><span class="toc-label">Padding & Spacing (px, %, em, rem)</span></a>
+      <a href="#ch07" class="toc-item"><span class="toc-num">07</span><span class="toc-label">Wireframe Padding (Desktop vs Mobile)</span></a>
+      <a href="#ch08" class="toc-item"><span class="toc-num">08</span><span class="toc-label">Font Size Guide</span></a>
+      <a href="#ch09" class="toc-item"><span class="toc-num">09</span><span class="toc-label">Image Sizes (Web Standard)</span></a>
+      <a href="#ch10" class="toc-item"><span class="toc-num">10</span><span class="toc-label">Image Naming & Format Guide</span></a>
+      <a href="#ch11" class="toc-item"><span class="toc-num">11</span><span class="toc-label">Free Resources (Figma, Icons)</span></a>
+      <a href="#ch12" class="toc-item"><span class="toc-num">12</span><span class="toc-label">WordPress Review & Testing Process</span></a>
+    </div>
+  </div>
+</nav>
+
+<!-- ─── 01 GLOSSARY ─── -->
+<section class="chapter" id="ch01">
+  <div class="wrap">
+    <div class="chapter-header">
+      <div class="chapter-num">01</div>
+      <div class="chapter-title-block">
+        <h2>Words You'll Hear</h2>
+        <p class="chapter-intro">Before anything else — learn the language. These are the terms that pop up daily on every WordPress project. If you don't know them yet, this is where you start.</p>
+      </div>
+    </div>
+
+    <div class="body">
+
+      <h3>Site environments</h3>
+      <p>A website doesn't just exist in one place. It usually has three "versions":</p>
+      <dl class="terms">
+        <dt>Live Site</dt><dd>The real, public website that visitors see. Also called the <em>production site</em>.</dd>
+        <dt>Staging Site</dt><dd>A private copy of the live site used for testing before you make changes public.</dd>
+        <dt>Dev Site</dt><dd>A draft version where new features and designs are built first, before going to staging.</dd>
+      </dl>
+      <div class="callout tip">
+        <span class="callout-label">Simple analogy</span>
+        Think of it like cooking. <strong>Dev</strong> is your test kitchen, <strong>Staging</strong> is the dish plated for tasting, and <strong>Live</strong> is what's served to the customer.
+      </div>
+
+      <h3>Safety & maintenance</h3>
+      <dl class="terms">
+        <dt>Backup</dt><dd>A saved copy of the website you can restore if something breaks.</dd>
+        <dt>Restore</dt><dd>The act of bringing the site back from a backup.</dd>
+        <dt>Update</dt><dd>Installing the newest version of WordPress core, a theme, or a plugin to stay secure.</dd>
+        <dt>Migration</dt><dd>Moving a website from one server or domain to another.</dd>
+        <dt>Downtime</dt><dd>When the site is offline or unreachable.</dd>
+        <dt>Rollback</dt><dd>Undoing a recent update or change.</dd>
+        <dt>Deployment</dt><dd>Pushing changes from staging or dev up to the live site.</dd>
+      </dl>
+
+      <h3>Website foundation</h3>
+      <dl class="terms">
+        <dt>Domain</dt><dd>The website's address, like <code class="inline">example.com</code>.</dd>
+        <dt>Hosting</dt><dd>The server (computer) where your website files actually live.</dd>
+        <dt>DNS</dt><dd>The "map" that connects your domain to your hosting.</dd>
+        <dt>Subdomain</dt><dd>An extra address under your domain, like <code class="inline">blog.example.com</code>.</dd>
+        <dt>SSL Certificate</dt><dd>What makes your site secure — the padlock icon in the browser.</dd>
+      </dl>
+
+      <h3>WordPress building blocks</h3>
+      <dl class="terms">
+        <dt>Theme</dt><dd>The design template of your site.</dd>
+        <dt>Plugin</dt><dd>An add-on app that adds extra features (forms, SEO, security, etc.).</dd>
+        <dt>Page</dt><dd>Static content like Home, About, or Contact.</dd>
+        <dt>Post</dt><dd>Blog articles or news updates.</dd>
+        <dt>Media Library</dt><dd>Where all your uploaded images, videos, and documents are stored.</dd>
+        <dt>Menu</dt><dd>The clickable links at the top, side, or bottom that move you around the site.</dd>
+        <dt>Widget</dt><dd>Small add-ons placed in sidebars or footers (search bars, calendars, etc.).</dd>
+        <dt>Shortcode</dt><dd>A small code snippet you paste into a page to display something (like a form or gallery).</dd>
+        <dt>Cache</dt><dd>A "saved snapshot" of the site that loads faster for returning visitors.</dd>
+      </dl>
+
+      <h3>Design parts</h3>
+      <dl class="terms">
+        <dt>Header</dt><dd>The top section of the website (logo + main menu).</dd>
+        <dt>Footer</dt><dd>The bottom section (contact info, copyright, secondary links).</dd>
+        <dt>Sidebar</dt><dd>The narrow side area where widgets can sit.</dd>
+        <dt>Customizer</dt><dd>WordPress's built-in tool for adjusting colors, logo, and fonts.</dd>
+      </dl>
+
+      <h3>User roles (who can do what)</h3>
+      <dl class="terms">
+        <dt>Admin</dt><dd>Full control. Can do anything, including delete the site.</dd>
+        <dt>Editor</dt><dd>Can manage and publish all posts and pages.</dd>
+        <dt>Author</dt><dd>Can write and publish their own posts only.</dd>
+        <dt>Contributor</dt><dd>Can write posts but can't publish them.</dd>
+        <dt>Subscriber</dt><dd>Can only read and log in. No editing.</dd>
+      </dl>
+
+      <h3>If the site sells products (WooCommerce)</h3>
+      <dl class="terms">
+        <dt>Cart</dt><dd>Where products go before checkout.</dd>
+        <dt>Checkout</dt><dd>The page where customers pay.</dd>
+        <dt>SKU</dt><dd>A unique product code or ID.</dd>
+        <dt>Inventory</dt><dd>Stock management for products.</dd>
+        <dt>Gateway</dt><dd>The payment method (PayPal, Stripe, etc.).</dd>
+      </dl>
+
+      <h3>Performance & security</h3>
+      <dl class="terms">
+        <dt>CDN</dt><dd>Content Delivery Network — speeds up your site worldwide by serving files from the nearest location.</dd>
+        <dt>Firewall</dt><dd>Security barrier that blocks hackers.</dd>
+        <dt>Malware Scan</dt><dd>Checking the site for viruses or harmful code.</dd>
+        <dt>Uptime</dt><dd>How long the site stays online without going down.</dd>
+      </dl>
+
+      <a href="#" class="back-top">↑ Back to top</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 02 BEST APPROACH ─── -->
+<section class="chapter" id="ch02">
+  <div class="wrap">
+    <div class="chapter-header">
+      <div class="chapter-num">02</div>
+      <div class="chapter-title-block">
+        <h2>Best Approach to Designing a Website</h2>
+        <p class="chapter-intro">Don't open Figma yet. Don't pick colors yet. Great websites start with thinking, not designing. Follow these five steps in order.</p>
+      </div>
+    </div>
+
+    <div class="body">
+
+      <div class="phases">
+        <div class="phase">
+          <div class="phase-header">
+            <span class="phase-num">STEP 1</span>
+            <span class="phase-title">Understand the Goal</span>
+          </div>
+          <p>Before you draw a single box, answer these three questions:</p>
+          <ul>
+            <li><strong>Who is the target audience?</strong> Who are we building this for?</li>
+            <li><strong>What is the main purpose?</strong> Sales, info, bookings, leads?</li>
+            <li><strong>What action should users take?</strong> This is the CTA (Call To Action) — buy, call, sign up, download.</li>
+          </ul>
+        </div>
+
+        <div class="phase">
+          <div class="phase-header">
+            <span class="phase-num">STEP 2</span>
+            <span class="phase-title">Plan the Structure (UX)</span>
+          </div>
+          <ul>
+            <li>Create a <strong>site map</strong> — a list of every page the site will have.</li>
+            <li>Sketch a <strong>wireframe</strong> — a rough layout of each page (Home, About, Services, etc.).</li>
+            <li>Plan the <strong>user flow</strong> — how a visitor moves from one page to the next.</li>
+          </ul>
+        </div>
+
+        <div class="phase">
+          <div class="phase-header">
+            <span class="phase-num">STEP 3</span>
+            <span class="phase-title">Design the UI (User Interface)</span>
+          </div>
+          <ul>
+            <li>Choose a clean, consistent design system: colors, fonts, spacing.</li>
+            <li>Use a <strong>grid layout</strong> and proper hierarchy (H1 → H2 → H3).</li>
+            <li>Design for both desktop and mobile (this is what "responsive" means).</li>
+          </ul>
+        </div>
+
+        <div class="phase">
+          <div class="phase-header">
+            <span class="phase-num">STEP 4</span>
+            <span class="phase-title">Use Real Content Early</span>
+          </div>
+          <ul>
+            <li>Avoid lorem ipsum and dummy text. Real content reveals real layout problems.</li>
+            <li>Optimize images, icons, and graphics. Use <strong>TinyPNG</strong> for images and <strong>HandBrake</strong> for video.</li>
+          </ul>
+        </div>
+
+        <div class="phase">
+          <div class="phase-header">
+            <span class="phase-num">STEP 5</span>
+            <span class="phase-title">Focus on Conversion</span>
+          </div>
+          <ul>
+            <li>Add clear CTAs — buttons, forms, contact info that stand out.</li>
+            <li>Build trust with testimonials, certifications, real photos.</li>
+            <li>Avoid clutter. <strong>Whitespace is your friend.</strong></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="callout tip">
+        <span class="callout-label">Why this order matters</span>
+        Skipping straight to design is the #1 mistake beginners make. You'll spend weeks making something pretty that doesn't actually solve the client's business problem.
+      </div>
+
+      <a href="#" class="back-top">↑ Back to top</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 03 STRUCTURED WEBSITE ─── -->
+<section class="chapter" id="ch03">
+  <div class="wrap">
+    <div class="chapter-header">
+      <div class="chapter-num">03</div>
+      <div class="chapter-title-block">
+        <h2>Structuring a Website</h2>
+        <p class="chapter-intro">After the design is done, here's everything you need to set up so the site actually works in the real world.</p>
+      </div>
+    </div>
+
+    <div class="body">
+
+      <h3>📄 On-Page SEO</h3>
+      <ul>
+        <li>Set <strong>meta titles</strong> and <strong>meta descriptions</strong> on every page (with relevant keywords).</li>
+        <li>Use only <strong>one H1 per page</strong>, then structure with H2 and H3.</li>
+        <li>Use internal links (linking to your own pages) and outbound links (to trusted sources).</li>
+      </ul>
+
+      <h3>⚡ Performance Optimization</h3>
+      <ul>
+        <li>Compress images using WebP format or TinyPNG.</li>
+        <li>Enable caching and minify your CSS and JavaScript.</li>
+        <li>Use a CDN like Cloudflare for global speed.</li>
+      </ul>
+
+      <h3>📱 Mobile Responsiveness</h3>
+      <ul>
+        <li>Make sure the site works on every screen size.</li>
+        <li>Test using Chrome DevTools or a mobile emulator.</li>
+      </ul>
+
+      <h3>🔐 Security & Backup</h3>
+      <ul>
+        <li>Install SSL (HTTPS) — without this, browsers show "Not Secure".</li>
+        <li>Set up regular automatic backups.</li>
+        <li>Use a security plugin like Wordfence.</li>
+      </ul>
+
+      <h3>📈 Analytics & Tracking</h3>
+      <ul>
+        <li>Install Google Analytics so you can see visitor data.</li>
+        <li>Set up Google Search Console.</li>
+        <li>Submit your <code class="inline">sitemap.xml</code> to Google.</li>
+      </ul>
+
+      <a href="#" class="back-top">↑ Back to top</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 04 SEO HEADING TAGS ─── -->
+<section class="chapter" id="ch04">
+  <div class="wrap">
+    <div class="chapter-header">
+      <div class="chapter-num">04</div>
+      <div class="chapter-title-block">
+        <h2>SEO Heading Tags</h2>
+        <p class="chapter-intro">Headings (H1, H2, H3) aren't just about size — they tell Google what your page is about. Used right, they boost your ranking. Used wrong, they hurt it.</p>
+      </div>
+    </div>
+
+    <div class="body">
+
+      <h3>The rule</h3>
+      <ul>
+        <li><strong>H1:</strong> Only <em>one per page</em>. This is the main topic or title of the page.</li>
+        <li><strong>H2:</strong> Use for main sections under the H1. You can have multiple.</li>
+        <li><strong>H3:</strong> Use for sub-sections under H2s. Also multiple allowed.</li>
+      </ul>
+
+      <div class="callout example">
+        <span class="callout-label">Example structure</span>
+        <strong>H1:</strong> Plumbing Services in Los Angeles<br>
+        &nbsp;&nbsp;<strong>H2:</strong> Emergency Plumbing<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<strong>H3:</strong> 24/7 Pipe Repair<br>
+        &nbsp;&nbsp;&nbsp;&nbsp;<strong>H3:</strong> Water Heater Replacement<br>
+        &nbsp;&nbsp;<strong>H2:</strong> Routine Maintenance<br>
+        &nbsp;&nbsp;<strong>H2:</strong> Why Choose Us
+      </div>
+
+      <h3>Why this matters</h3>
+      <ul>
+        <li>Helps Google understand your page structure.</li>
+        <li>Improves readability for users.</li>
+        <li>Supports keyword relevance when used properly.</li>
+      </ul>
+
+      <a href="#" class="back-top">↑ Back to top</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 05 HEADER & FOOTER ─── -->
+<section class="chapter" id="ch05">
+  <div class="wrap">
+    <div class="chapter-header">
+      <div class="chapter-num">05</div>
+      <div class="chapter-title-block">
+        <h2>Header & Footer Standards</h2>
+        <p class="chapter-intro">The header and footer appear on every page of the website. Get them right once, and the whole site benefits.</p>
+      </div>
+    </div>
+
+    <div class="body">
+
+      <h3>Standard Header Design</h3>
+      <ul>
+        <li><strong>Logo at top-left</strong> — make sure it's clickable and links to the homepage.</li>
+        <li><strong>Navigation Menu</strong> — align right or center. Keep it to <strong>5–7 links max</strong>.</li>
+        <li><strong>Call-to-Action button</strong> — separate from the menu. Examples: "Contact Us", "Shop Now", "Get a Quote".</li>
+        <li><strong>Sticky/Fixed</strong> — make it stick to the top so it's visible even when scrolling down.</li>
+        <li><strong>Responsive Setup</strong> — desktop shows full menu; mobile shows a hamburger menu (☰).</li>
+      </ul>
+
+      <h3>Standard Footer Design</h3>
+      <ul>
+        <li><strong>4-column layout on desktop:</strong> About | Quick Links | Services/Products | Contact Info.</li>
+        <li><strong>Copyright + small menu</strong> at the very bottom, centered.</li>
+        <li><strong>Social media icons</strong> — keep them simple and consistent (right side or centered).</li>
+        <li><strong>Newsletter signup</strong> — optional, but great for engagement.</li>
+        <li><strong>Mobile layout</strong> — columns automatically stack vertically.</li>
+      </ul>
+
+      <h3>Pro tips so it doesn't break later</h3>
+      <ul>
+        <li><strong>Use Global Templates</strong> in WordPress (Elementor, Divi, or Kadence). Build the header/footer once as a template, then apply it to all pages. Edit one place, update everywhere.</li>
+        <li><strong>Use Flexbox or Grid</strong> for layout. Avoid absolute positioning — it breaks easily when the screen resizes.</li>
+        <li><strong>Be consistent with spacing</strong>. Set a padding/margin scale (example: 20px on desktop, 10px on mobile).</li>
+        <li><strong>Save reusable blocks</strong> so you can copy-paste them into other projects.</li>
+      </ul>
+
+      <a href="#" class="back-top">↑ Back to top</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 06 PADDING UNITS ─── -->
+<section class="chapter" id="ch06">
+  <div class="wrap">
+    <div class="chapter-header">
+      <div class="chapter-num">06</div>
+      <div class="chapter-title-block">
+        <h2>Padding & Spacing Units</h2>
+        <p class="chapter-intro">When to use <code class="inline">px</code>, <code class="inline">%</code>, <code class="inline">em</code>, or <code class="inline">rem</code>. Choosing the wrong one is why so many sites break on mobile.</p>
+      </div>
+    </div>
+
+    <div class="body">
+
+      <h3>1. Pixels (px)</h3>
+      <p><strong>Fixed size</strong> — does not adjust on different screens.</p>
+      <ul>
+        <li>Example: <code class="inline">padding: 20px;</code></li>
+        <li><strong>Best for:</strong> small details that should stay the same — icons, buttons, logos.</li>
+      </ul>
+      <div class="callout warn">
+        <span class="callout-label">Watch out</span>
+        If you use px for everything, your layout will break on mobile because pixels don't adapt to screen size.
+      </div>
+
+      <h3>2. Percentage (%)</h3>
+      <p><strong>Relative to the parent container</strong> — adjusts based on the section/column width.</p>
+      <ul>
+        <li>Example: <code class="inline">padding: 5%;</code> — smaller screen means smaller padding automatically.</li>
+        <li><strong>Best for:</strong> responsive sections that need to stay proportional.</li>
+        <li><strong>Advantage:</strong> you don't have to write separate rules for each screen size.</li>
+      </ul>
+
+      <h3>3. em and rem</h3>
+      <ul>
+        <li><strong>em</strong> = relative to the font size of the <em>parent</em> element.</li>
+        <li><strong>rem</strong> = relative to the <em>root</em> font size (the global one).</li>
+        <li>Example: <code class="inline">padding: 2rem;</code> — if your base font is 16px, padding becomes 32px.</li>
+        <li><strong>Best for:</strong> consistent spacing tied to text size, so everything feels uniform.</li>
+      </ul>
+
+      <h3>The expert approach</h3>
+      <ul>
+        <li>Use <strong>%</strong> or <strong>rem</strong> for sections — they're automatically responsive.</li>
+        <li>Use <strong>px</strong> for small UI elements like buttons, icons, and logos.</li>
+        <li>Follow the <strong>8px spacing scale</strong>: 8, 16, 24, 32, 40, 48 — use multiples of 8 for everything.</li>
+        <li>If padding looks too big on mobile, switch from px to % or rem.</li>
+        <li>Set spacing globally in your theme/builder so one change updates the whole site.</li>
+      </ul>
+
+      <div class="callout example">
+        <span class="callout-label">Standard practice in the wild</span>
+        <strong>Section padding:</strong> <code class="inline">5%</code> top-bottom, <code class="inline">10%</code> left-right (responsive)<br>
+        <strong>Column padding:</strong> <code class="inline">2rem</code> (consistent with text)<br>
+        <strong>Button padding:</strong> <code class="inline">12px 24px</code> (fixed for balance)
+      </div>
+
+      <a href="#" class="back-top">↑ Back to top</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 07 WIREFRAME PADDING ─── -->
+<section class="chapter" id="ch07">
+  <div class="wrap">
+    <div class="chapter-header">
+      <div class="chapter-num">07</div>
+      <div class="chapter-title-block">
+        <h2>Wireframe Padding: Desktop vs Mobile</h2>
+        <p class="chapter-intro">Concrete numbers you can copy directly into your designs. No guessing.</p>
+      </div>
+    </div>
+
+    <div class="body">
+
+      <h3>Desktop (Laptop / Monitor)</h3>
+
+      <h4>Section (Hero / Main Blocks)</h4>
+      <ul>
+        <li>Top & Bottom padding: <strong>80px – 120px</strong></li>
+        <li>Left & Right padding: <strong>10%</strong> (relative to screen width)</li>
+      </ul>
+
+      <h4>Columns / Inner Content</h4>
+      <ul>
+        <li>Padding: <strong>40px</strong></li>
+        <li>Gap between columns: <strong>32px – 48px</strong></li>
+      </ul>
+
+      <h4>Text Blocks</h4>
+      <ul>
+        <li>Paragraph line-height: <strong>1.5rem</strong></li>
+        <li>Gap between sections: <strong>64px – 96px</strong></li>
+      </ul>
+
+      <h3>Mobile (Phone / Small Screen)</h3>
+
+      <h4>Section (Hero / Main Blocks)</h4>
+      <ul>
+        <li>Top & Bottom padding: <strong>40px – 60px</strong></li>
+        <li>Left & Right padding: <strong>5%</strong></li>
+      </ul>
+
+      <h4>Columns / Inner Content</h4>
+      <ul>
+        <li>Padding: <strong>16px / 20px / 24px</strong></li>
+        <li>Columns auto-stack (single column view)</li>
+      </ul>
+
+      <h4>Text Blocks</h4>
+      <ul>
+        <li>Paragraph line-height: <strong>1.2rem</strong></li>
+        <li>Gap between sections: <strong>32px – 48px</strong></li>
+      </ul>
+
+      <h3>Pro tips</h3>
+      <ul>
+        <li><strong>Desktop:</strong> mix px and % — px for fixed heights, % for responsive widths.</li>
+        <li><strong>Mobile:</strong> use less padding. Don't waste tiny screens.</li>
+        <li><strong>Stick to the 8px system</strong> (8, 16, 24, 32, 40...) for uniform spacing.</li>
+        <li><strong>Test in 3 views:</strong> Desktop, Tablet, Mobile. Tablet often breaks first.</li>
+      </ul>
+
+      <div class="callout example">
+        <span class="callout-label">Real Hero Section example</span>
+        <strong>Desktop:</strong> <code class="inline">padding: 100px top-bottom, 10% left-right</code><br>
+        <strong>Mobile:</strong> <code class="inline">padding: 50px top-bottom, 5% left-right</code>
+      </div>
+
+      <a href="#" class="back-top">↑ Back to top</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 08 FONT SIZE GUIDE ─── -->
+<section class="chapter" id="ch08">
+  <div class="wrap">
+    <div class="chapter-header">
+      <div class="chapter-num">08</div>
+      <div class="chapter-title-block">
+        <h2>Font Size Guide</h2>
+        <p class="chapter-intro">A complete typographic scale. The same one you'll use on every JC project. Memorize the body sizes; reference the rest.</p>
+      </div>
+    </div>
+
+    <div class="body">
+
+      <h3>The Type Scale</h3>
+
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Style</th>
+              <th>Desktop</th>
+              <th>Mobile</th>
+              <th>Responsive (clamp)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Title 1</strong> (Hero H1)</td>
+              <td>4rem / 64px</td>
+              <td>3rem / 48px</td>
+              <td><code>clamp(3rem, 1.7309rem + 1.813vw, 4rem)</code></td>
+            </tr>
+            <tr>
+              <td><strong>Title 2</strong></td>
+              <td>3rem / 48px</td>
+              <td>2.4rem / 38.4px</td>
+              <td><code>clamp(2.6rem, 1.7309rem + 1.813vw, 3rem)</code></td>
+            </tr>
+            <tr>
+              <td><strong>Title 3</strong></td>
+              <td>2.5rem / 40px</td>
+              <td>2.1rem / 33.6px</td>
+              <td><code>clamp(2.2rem, 1.5482rem + 1.3598vw, 2.5rem)</code></td>
+            </tr>
+            <tr>
+              <td><strong>Title 4</strong></td>
+              <td>2rem / 32px</td>
+              <td>1.8rem / 28.8px</td>
+              <td><code>clamp(1.8rem, 1.3654rem + 0.9065vw, 2rem)</code></td>
+            </tr>
+            <tr>
+              <td><strong>Title 5</strong></td>
+              <td>1.75rem / 28px</td>
+              <td>1.6rem / 25.6px</td>
+              <td><code>clamp(1.6rem, 1.2741rem + 0.6799vw, 1.75rem)</code></td>
+            </tr>
+            <tr>
+              <td><strong>Title 6</strong></td>
+              <td>1.5rem / 24px</td>
+              <td>1.4rem / 22.4px</td>
+              <td><code>clamp(1.4rem, 1.1827rem + 0.4533vw, 1.5rem)</code></td>
+            </tr>
+            <tr>
+              <td><strong>Title 7</strong></td>
+              <td>1.25rem / 20px</td>
+              <td>1.2rem / 19.2px</td>
+              <td><code>clamp(1.2rem, 1.0914rem + 0.2266vw, 1.25rem)</code></td>
+            </tr>
+            <tr>
+              <td><strong>Subheading</strong></td>
+              <td>1.25rem / 20px</td>
+              <td>1.2rem / 19.2px</td>
+              <td>—</td>
+            </tr>
+            <tr>
+              <td><strong>Body L</strong></td>
+              <td>1.125rem / 18px</td>
+              <td>1.125rem / 18px</td>
+              <td>No clamp needed</td>
+            </tr>
+            <tr>
+              <td><strong>Body</strong></td>
+              <td>1rem / 16px</td>
+              <td>1rem / 16px</td>
+              <td>No clamp needed</td>
+            </tr>
+            <tr>
+              <td><strong>Body S</strong></td>
+              <td>0.875rem / 14px</td>
+              <td>0.875rem / 14px</td>
+              <td>No clamp needed</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Font Weights</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Number</th><th>Name</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td>100</td><td>Thin / Hairline</td><td>Very light</td></tr>
+            <tr><td>200</td><td>Extra Light</td><td>Light</td></tr>
+            <tr><td>300</td><td>Light</td><td>Slightly light</td></tr>
+            <tr><td>400</td><td>Regular</td><td>Standard text</td></tr>
+            <tr><td>500</td><td>Medium</td><td>Slightly bolder than regular</td></tr>
+            <tr><td>600</td><td>Semi-Bold</td><td>Noticeably bold but not heavy</td></tr>
+            <tr><td>700</td><td>Bold</td><td>Bold</td></tr>
+            <tr><td>800</td><td>Extra Bold</td><td>Very bold</td></tr>
+            <tr><td>900</td><td>Black / Ultra</td><td>Extremely bold</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="callout warn">
+        <span class="callout-label">Important — for performance</span>
+        <strong>Disable Google Fonts and upload the font files manually</strong> to the site. This dramatically improves loading speed. Convert your font to a web font format using <a href="https://transfonter.org" style="color:var(--warn);">transfonter.org</a> first.
+      </div>
+
+      <a href="#" class="back-top">↑ Back to top</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 09 IMAGE SIZES ─── -->
+<section class="chapter" id="ch09">
+  <div class="wrap">
+    <div class="chapter-header">
+      <div class="chapter-num">09</div>
+      <div class="chapter-title-block">
+        <h2>Image Sizes (Web Standard)</h2>
+        <p class="chapter-intro">Right size, right format, right alt text. This is the difference between a fast site and a slow one.</p>
+      </div>
+    </div>
+
+    <div class="body">
+
+      <h3>Why standard image sizes matter</h3>
+      <ul>
+        <li>Faster page load — critical for SEO and mobile users.</li>
+        <li>Consistent design across devices.</li>
+        <li>Prevents layout shifts and improves Core Web Vitals.</li>
+        <li>Pages look clean and professional.</li>
+      </ul>
+
+      <h3>Standard Image Sizes</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Image Type</th>
+              <th>Size (W × H)</th>
+              <th>Max File Size</th>
+              <th>Notes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td><strong>Logo</strong></td><td>250 × 100</td><td>≤ 50 KB</td><td>SVG or PNG preferred</td></tr>
+            <tr><td><strong>Hero Banner</strong></td><td>1920 × 700–800</td><td>≤ 250–400 KB</td><td>JPG or WebP for performance</td></tr>
+            <tr><td><strong>Inner Banner</strong></td><td>1920 × 500–600</td><td>≤ 200–300 KB</td><td>For section headers</td></tr>
+            <tr><td><strong>Content Image</strong></td><td>800 × 600</td><td>≤ 100 KB</td><td>Inside blogs or pages</td></tr>
+            <tr><td><strong>Full-Width Image</strong></td><td>1920 × 1080</td><td>≤ 250–350 KB</td><td>Background or featured</td></tr>
+            <tr><td><strong>Mobile Banner</strong></td><td>768 × 1000</td><td>≤ 150–200 KB</td><td>Optimize separately</td></tr>
+            <tr><td><strong>Thumbnail</strong></td><td>150 × 150</td><td>≤ 30–50 KB</td><td>Galleries or cards</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Filename Guidelines</h3>
+      <ul>
+        <li>Use descriptive, keyword-rich names.</li>
+        <li>All lowercase, with hyphens (-) between words.</li>
+        <li>No special characters or spaces.</li>
+      </ul>
+
+      <div class="compare">
+        <div class="compare-card do">
+          <span class="label">✓ Do</span>
+          <code>plumbing-services-los-angeles.jpg</code><br>
+          <code>modern-office-interior-design.webp</code>
+        </div>
+        <div class="compare-card dont">
+          <span class="label">✗ Don't</span>
+          <code>IMG_4837.JPG</code><br>
+          <code>Picture 1.png</code><br>
+          <code>image_final_FINAL.jpg</code>
+        </div>
+      </div>
+
+      <h3>Alt Text Guidelines</h3>
+      <ul>
+        <li>Describe the image briefly and clearly.</li>
+        <li>Include keywords naturally — but don't stuff.</li>
+        <li>Avoid generic terms like "image of" or "picture of".</li>
+      </ul>
+
+      <div class="callout example">
+        <span class="callout-label">Example</span>
+        <strong>Filename:</strong> <code class="inline">kitchen-renovation-austin.jpg</code><br>
+        <strong>Alt Text:</strong> "Kitchen renovation in Austin with white marble countertops"
+      </div>
+
+      <a href="#" class="back-top">↑ Back to top</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 10 NAMING FORMAT ─── -->
+<section class="chapter" id="ch10">
+  <div class="wrap">
+    <div class="chapter-header">
+      <div class="chapter-num">10</div>
+      <div class="chapter-title-block">
+        <h2>Image Naming & Format Guide</h2>
+        <p class="chapter-intro">A naming convention so consistent that any teammate can find any file in seconds, and a format guide so you never use the wrong file type again.</p>
+      </div>
+    </div>
+
+    <div class="body">
+
+      <h3>The naming formula</h3>
+      <pre class="code">page-section-image-role[-context-or-variant][-size-or-resolution].ext</pre>
+
+      <h3>Rules</h3>
+      <ul>
+        <li>Use only <strong>hyphens</strong> (-). Never underscores.</li>
+        <li>All lowercase.</li>
+        <li>Be descriptive and consistent.</li>
+      </ul>
+
+      <h3>What each part means</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Part</th><th>Description</th></tr></thead>
+          <tbody>
+            <tr><td><code>page</code></td><td>The page the image is used on (home, services, blog...)</td></tr>
+            <tr><td><code>section</code></td><td>The section within that page (hero, gallery, footer...)</td></tr>
+            <tr><td><code>image-role</code></td><td>What the image is (hero, icon, photo, mockup...)</td></tr>
+            <tr><td><code>variant</code> (optional)</td><td>Theme or interaction state (dark, hover, open...)</td></tr>
+            <tr><td><code>size</code> (optional)</td><td>Display variant (@2x, mobile, thumb...)</td></tr>
+            <tr><td><code>ext</code></td><td>File extension (.svg, .webp, .jpg, .png)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Real examples</h3>
+      <pre class="code">home-hero-background.webp
+services-icon-consulting-dark.svg
+product-growkit-mockup-front@2x.webp
+blog-how-to-grow-traffic-feature-image.webp
+case-study-harvestplus-overview-photo.jpg
+header-logo-light.svg
+footer-logo-dark.svg
+home-gallery-carousel-02.webp
+faq-accordion-open-icon.svg</pre>
+
+      <h3>When to use which file format</h3>
+
+      <h4>SVG (.svg) — for icons, logos, flat illustrations</h4>
+      <div class="compare">
+        <div class="compare-card do">
+          <span class="label">✓ Use when</span>
+          You need responsive scaling. You need crisp UI at any size. You need transparent icons or logos.
+        </div>
+        <div class="compare-card dont">
+          <span class="label">✗ Avoid when</span>
+          The image is a photo. There's heavy graphical detail. Complex bitmap effects are involved.
+        </div>
+      </div>
+
+      <h4>WebP (.webp) — for photos, UI graphics, backgrounds</h4>
+      <div class="compare">
+        <div class="compare-card do">
+          <span class="label">✓ Use when</span>
+          You want high quality with a small file size. You need transparency. You're optimizing carousels and galleries.
+        </div>
+        <div class="compare-card dont">
+          <span class="label">✗ Avoid when</span>
+          You need it for print. Your editing workflow needs PSD or doesn't support WebP.
+        </div>
+      </div>
+
+      <h4>JPEG (.jpg) — for high-res photos, fallback or editing base</h4>
+      <div class="compare">
+        <div class="compare-card do">
+          <span class="label">✓ Use when</span>
+          You need photographic content. You need a WebP fallback. The image is heading to heavy editing.
+        </div>
+        <div class="compare-card dont">
+          <span class="label">✗ Avoid when</span>
+          You need transparency. The image is a vector or illustration.
+        </div>
+      </div>
+
+      <h4>PNG (.png) — for transparency when SVG/WebP don't work</h4>
+      <div class="compare">
+        <div class="compare-card do">
+          <span class="label">✓ Use when</span>
+          You need a UI overlay with transparency. You need image masks.
+        </div>
+        <div class="compare-card dont">
+          <span class="label">✗ Avoid when</span>
+          It's a hero banner or full-width background. It's an icon or logo (use SVG instead).
+        </div>
+      </div>
+
+      <h3>Quick recommendation guide</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Use Case</th><th>Format</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>Logos & icons</td><td><code>.svg</code></td><td>Scalable, fast-loading</td></tr>
+            <tr><td>Flat or line illustrations</td><td><code>.svg</code></td><td>Better than PNG</td></tr>
+            <tr><td>Team photos, product shots</td><td><code>.webp</code></td><td>Use @2x for retina</td></tr>
+            <tr><td>Transparent overlays</td><td><code>.webp</code> / <code>.png</code></td><td>PNG only if WebP fails</td></tr>
+            <tr><td>Backgrounds with gradients</td><td><code>.webp</code></td><td>Optimize for speed</td></tr>
+            <tr><td>Carousels & sliders</td><td><code>.webp</code></td><td>Keep each under 300KB</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Responsive & Retina Suffixes</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Display Type</th><th>Suffix</th><th>Use Case</th></tr></thead>
+          <tbody>
+            <tr><td>Standard</td><td>(none)</td><td>Default image</td></tr>
+            <tr><td>Retina</td><td><code>@2x</code></td><td>High-DPI displays</td></tr>
+            <tr><td>Mobile</td><td><code>-mobile</code></td><td>Smaller screens</td></tr>
+            <tr><td>Desktop</td><td><code>-desktop</code></td><td>Large screens</td></tr>
+            <tr><td>Thumbnail</td><td><code>-thumb</code></td><td>Cards, previews, nav</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Export tips (Figma & beyond)</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Tool</th><th>Format</th><th>Quality</th><th>Notes</th></tr></thead>
+          <tbody>
+            <tr><td>Figma</td><td>WebP</td><td>70–85%</td><td>Balance quality vs performance</td></tr>
+            <tr><td>Figma</td><td>SVG</td><td>Clean</td><td>Optimize, remove metadata</td></tr>
+            <tr><td>Photoshop</td><td>WebP</td><td>70–80%</td><td>Ideal for photography</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <a href="#" class="back-top">↑ Back to top</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 11 FREE RESOURCES ─── -->
+<section class="chapter" id="ch11">
+  <div class="wrap">
+    <div class="chapter-header">
+      <div class="chapter-num">11</div>
+      <div class="chapter-title-block">
+        <h2>Free Resources</h2>
+        <p class="chapter-intro">Tools and sites the team uses on every project. Bookmark these.</p>
+      </div>
+    </div>
+
+    <div class="body">
+
+      <h3>Figma — Web Design Guide</h3>
+      <p>Recommended tutorial: <a href="https://youtu.be/vbFn0C-pvis?si=M7H_vcA2ySgmSa5G" style="color:var(--accent);">https://youtu.be/vbFn0C-pvis</a></p>
+
+      <h3>Free Icons</h3>
+      <p>Streamline HQ — high quality, consistent icon library: <a href="https://www.streamlinehq.com/" style="color:var(--accent);">https://www.streamlinehq.com/</a></p>
+
+      <h3>Image Compression</h3>
+      <ul>
+        <li><strong>TinyPNG</strong> — for compressing images.</li>
+        <li><strong>HandBrake</strong> — for compressing videos.</li>
+      </ul>
+
+      <h3>Font Conversion</h3>
+      <p><strong>Transfonter</strong> — convert fonts to web font format: <a href="https://transfonter.org" style="color:var(--accent);">https://transfonter.org</a></p>
+
+      <h3>SEO & Performance</h3>
+      <ul>
+        <li><strong>Google PageSpeed Insights</strong> — <a href="https://pagespeed.web.dev/" style="color:var(--accent);">pagespeed.web.dev</a></li>
+        <li><strong>Google Mobile-Friendly Test</strong> (web-based)</li>
+        <li><strong>W3C HTML Validator</strong> (web-based)</li>
+        <li><strong>GTmetrix Pro</strong> — detailed performance testing (paid)</li>
+        <li><strong>Screaming Frog SEO Spider</strong> — comprehensive site crawling (paid)</li>
+      </ul>
+
+      <a href="#" class="back-top">↑ Back to top</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── 12 WORDPRESS REVIEW ─── -->
+<section class="chapter" id="ch12">
+  <div class="wrap">
+    <div class="chapter-header">
+      <div class="chapter-num">12</div>
+      <div class="chapter-title-block">
+        <h2>WordPress Review & Testing Process</h2>
+        <p class="chapter-intro">The full pre-launch checklist. Run through this in order, every time, before any site goes live. No skipping.</p>
+      </div>
+    </div>
+
+    <div class="body">
+
+      <div class="phases">
+
+        <!-- Phase 1 -->
+        <div class="phase">
+          <div class="phase-header">
+            <span class="phase-num">PHASE 1</span>
+            <span class="phase-title">Theme Cleanup & Content Review</span>
+          </div>
+          <p>Do this first — it catches the most common issues.</p>
+
+          <h4>1.1 — Remove demo content & theme elements</h4>
+          <ul class="checklist">
+            <li><strong>Header/Navigation:</strong> Remove sample menu items like "Sample Page" or "Hello World". Go to Appearance → Menus.</li>
+            <li><strong>Footer:</strong> Remove theme credits and sample text. Check Appearance → Customize → Footer for "Powered by [Theme Name]".</li>
+            <li><strong>Widgets:</strong> Remove default widgets like "Recent Posts" or "Sample Widget" via Appearance → Widgets.</li>
+            <li><strong>Homepage:</strong> Search for lorem ipsum, "Your content here", or stock theme images. Replace with the client's real content.</li>
+            <li><strong>Blog/News:</strong> Delete the "Hello World" post and any other demo posts. If no blog is planned, hide the menu item.</li>
+          </ul>
+
+          <h4>1.2 — Elementor-specific cleanup</h4>
+          <ul class="checklist">
+            <li>Check for Elementor demo templates still active.</li>
+            <li>Remove unused Elementor template library items.</li>
+            <li>Verify all Elementor widgets show client content, not placeholders.</li>
+          </ul>
+        </div>
+
+        <!-- Phase 2 -->
+        <div class="phase">
+          <div class="phase-header">
+            <span class="phase-num">PHASE 2</span>
+            <span class="phase-title">Functionality Testing</span>
+          </div>
+          <p>Test that every interactive element actually works.</p>
+
+          <h4>2.1 — Forms</h4>
+          <ul class="checklist">
+            <li>Fill out and submit every form on the site.</li>
+            <li>Check that email notifications actually arrive in the inbox.</li>
+            <li>Make sure confirmation messages display after submission.</li>
+            <li>Test required field validation (try submitting empty fields).</li>
+            <li>For quote forms: verify all logic, calculations, and dropdowns work.</li>
+          </ul>
+
+          <h4>2.2 — Navigation & links</h4>
+          <ul class="checklist">
+            <li><strong>Main menu:</strong> Click every link. Confirm submenus open.</li>
+            <li><strong>CTA buttons:</strong> "Call Now" should open the phone dialer; "Email Us" should open the email client.</li>
+            <li><strong>Internal links:</strong> Click every "Learn More" and inline link to confirm they go where they should.</li>
+          </ul>
+        </div>
+
+        <!-- Phase 3 -->
+        <div class="phase">
+          <div class="phase-header">
+            <span class="phase-num">PHASE 3</span>
+            <span class="phase-title">Cross-Browser & Device Testing</span>
+          </div>
+
+          <h4>3.1 — Browsers</h4>
+          <p>Test in (at minimum):</p>
+          <ul class="checklist">
+            <li>Chrome (desktop)</li>
+            <li>Firefox (desktop)</li>
+            <li>Safari (if you have a Mac)</li>
+            <li>Edge (Windows)</li>
+          </ul>
+          <p>In each: confirm pages load fully, layout is correct, buttons and forms work, images display properly.</p>
+
+          <h4>3.2 — Mobile</h4>
+          <ul class="checklist">
+            <li>Test on your actual phone (this is the easiest method).</li>
+            <li>Use Chrome's mobile view: press <code class="inline">F12</code> → click the mobile icon → test iPhone, iPad, Android sizes.</li>
+            <li>Confirm: hamburger menu works, text is readable without zooming, buttons are easy to tap, forms work, images resize.</li>
+          </ul>
+        </div>
+
+        <!-- Phase 4 -->
+        <div class="phase">
+          <div class="phase-header">
+            <span class="phase-num">PHASE 4</span>
+            <span class="phase-title">Performance & Speed Testing</span>
+          </div>
+
+          <h4>4.1 — Speed tests</h4>
+          <ul class="checklist">
+            <li><strong>Google PageSpeed Insights:</strong> go to <a href="https://pagespeed.web.dev/" style="color:var(--accent);">pagespeed.web.dev</a>, paste the URL. Target green (80+) on both desktop and mobile.</li>
+            <li><strong>GTmetrix:</strong> target Grade A or B, with load time under 3 seconds.</li>
+          </ul>
+
+          <h4>4.2 — Image optimization</h4>
+          <ul class="checklist">
+            <li>Find any images over 1MB and compress them (use TinyPNG).</li>
+            <li>Resize images down to actual display size — don't serve a 4000px image to a 400px slot.</li>
+            <li>Verify every image has alt text. Right-click → Inspect → check for the <code class="inline">alt=""</code> attribute.</li>
+          </ul>
+        </div>
+
+        <!-- Phase 5 -->
+        <div class="phase">
+          <div class="phase-header">
+            <span class="phase-num">PHASE 5</span>
+            <span class="phase-title">Content & SEO Basics</span>
+          </div>
+
+          <h4>5.1 — Content review</h4>
+          <ul class="checklist">
+            <li>Read through main pages for spelling and grammar (Grammarly helps).</li>
+            <li>Verify all phone numbers are correct and clickable on mobile.</li>
+            <li>Confirm address matches Google My Business.</li>
+            <li>Check email addresses actually work.</li>
+            <li>Make sure business hours are current.</li>
+          </ul>
+
+          <h4>5.2 — Basic SEO</h4>
+          <ul class="checklist">
+            <li><strong>Page titles</strong> in browser tabs should be descriptive — never "Home" or "Page".</li>
+            <li>Install <strong>Rank Math</strong> (or similar SEO plugin) if not already installed.</li>
+            <li>Add meta descriptions to homepage, services, and contact (under 160 characters each).</li>
+          </ul>
+        </div>
+
+        <!-- Phase 6 -->
+        <div class="phase">
+          <div class="phase-header">
+            <span class="phase-num">PHASE 6</span>
+            <span class="phase-title">Error Detection & Resolution</span>
+          </div>
+
+          <h4>6.1 — Broken links</h4>
+          <ul class="checklist">
+            <li>Manually click all major links.</li>
+            <li>Open browser console (<code class="inline">F12</code>) and look for red error messages.</li>
+            <li>Test 404 errors by visiting a URL that doesn't exist — confirm a proper 404 page shows.</li>
+          </ul>
+
+          <h4>6.2 — Visual issues</h4>
+          <ul class="checklist">
+            <li>Look for broken image icons.</li>
+            <li>Check for overlapping text or images.</li>
+            <li>Verify text contrast — is everything readable?</li>
+            <li>Watch for cramped or overly spread-out content.</li>
+          </ul>
+        </div>
+
+        <!-- Phase 7 -->
+        <div class="phase">
+          <div class="phase-header">
+            <span class="phase-num">PHASE 7</span>
+            <span class="phase-title">Final Pre-Launch Checks</span>
+          </div>
+
+          <h4>7.1 — WordPress settings</h4>
+          <ul class="checklist">
+            <li><strong>Search Engine Visibility:</strong> Go to Settings → Reading. <strong>UNCHECK "Discourage search engines"</strong>. This is the #1 launch mistake!</li>
+            <li><strong>Permalinks:</strong> Go to Settings → Permalinks. Choose "Post name" structure for clean URLs.</li>
+          </ul>
+
+          <h4>7.2 — Security & backup</h4>
+          <ul class="checklist">
+            <li>Remove demo admin accounts.</li>
+            <li>Update all plugins to their latest versions.</li>
+            <li>Create a fresh backup before launch.</li>
+          </ul>
+        </div>
+
+        <!-- Phase 8 -->
+        <div class="phase">
+          <div class="phase-header">
+            <span class="phase-num">PHASE 8</span>
+            <span class="phase-title">Document Issues & Handoff</span>
+          </div>
+
+          <h4>8.1 — Document any issues found</h4>
+          <ul>
+            <li>Take screenshots.</li>
+            <li>Note the page URL where the issue happens.</li>
+            <li>Describe what's wrong in plain language.</li>
+            <li>Fix what you can; flag the rest for the SEO specialist.</li>
+          </ul>
+
+          <h4>8.2 — Pre-SEO handoff checklist</h4>
+          <p>Before passing to the SEO specialist, confirm:</p>
+          <ul class="checklist">
+            <li>All demo content removed</li>
+            <li>All forms work and emails arrive</li>
+            <li>Site loads in under 3 seconds</li>
+            <li>Mobile version looks good</li>
+            <li>Contact info is accurate</li>
+            <li>Search engines are <em>allowed</em>, not blocked</li>
+          </ul>
+        </div>
+      </div>
+
+      <h3>Common Issues & Quick Fixes</h3>
+      <div class="table-wrap">
+        <table>
+          <thead><tr><th>Problem</th><th>Fix</th></tr></thead>
+          <tbody>
+            <tr><td>Contact form not sending emails</td><td>Check form plugin settings; verify SMTP configuration</td></tr>
+            <tr><td>Mobile menu not working</td><td>Check theme customizer mobile menu settings</td></tr>
+            <tr><td>Images too large / slow loading</td><td>Compress images; install an image optimization plugin</td></tr>
+            <tr><td>Text hard to read</td><td>Increase font size; improve color contrast</td></tr>
+            <tr><td>Broken links</td><td>Update URLs or remove the broken link entirely</td></tr>
+            <tr><td>Phone numbers not clickable on mobile</td><td>Format as: <code class="inline">&lt;a href="tel:+1234567890"&gt;(123) 456-7890&lt;/a&gt;</code></td></tr>
+            <tr><td>"Sample Page" still showing in Google</td><td>Delete sample pages completely — don't just hide them from the menu</td></tr>
+            <tr><td>Footer still says "Powered by WordPress"</td><td>Appearance → Customize → Footer → Edit copyright text</td></tr>
+            <tr><td>Elementor showing placeholder text</td><td>Edit each Elementor section, replace with client content</td></tr>
+            <tr><td>Favicon shows WordPress or theme default</td><td>Appearance → Customize → Site Identity → Upload client favicon (32×32px)</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3>Tools Quick-Start</h3>
+
+      <h4>Google PageSpeed Insights</h4>
+      <ol>
+        <li>Go to <a href="https://pagespeed.web.dev/" style="color:var(--accent);">pagespeed.web.dev</a></li>
+        <li>Paste your staging URL</li>
+        <li>Click "Analyze"</li>
+        <li>Focus on green scores and major red items first</li>
+      </ol>
+
+      <h4>Browser Mobile Testing</h4>
+      <ol>
+        <li>Open Chrome</li>
+        <li>Press <code class="inline">F12</code></li>
+        <li>Click the mobile phone icon (top-left of the dev tools)</li>
+        <li>Select different device sizes from the dropdown</li>
+        <li>Test the site in each one</li>
+      </ol>
+
+      <h4>Finding Broken Images</h4>
+      <ol>
+        <li>Press <code class="inline">F12</code> in the browser</li>
+        <li>Go to the "Console" tab</li>
+        <li>Look for red error messages about images</li>
+        <li>Fix missing images in the WordPress Media Library</li>
+      </ol>
+
+      <a href="#" class="back-top">↑ Back to top</a>
+    </div>
+  </div>
+</section>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="wrap">
+    <div class="sig">JC Web Design SOP</div>
+    <div class="small">For questions or additions, contact your project lead.</div>
+  </div>
+</footer>
+
+</body>
+</html>
