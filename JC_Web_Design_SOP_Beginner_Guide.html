@@ -569,20 +569,73 @@ footer .small {
 }
 
 .scale-bar.accent { background: var(--accent); }
+
+/* ─── Language Toggle ─── */
+.lang-toggle {
+  position: absolute;
+  top: 32px;
+  right: 32px;
+  display: inline-flex;
+  background: rgba(250, 247, 242, 0.08);
+  border: 1px solid rgba(250, 247, 242, 0.2);
+  border-radius: 100px;
+  padding: 4px;
+  z-index: 10;
+  backdrop-filter: blur(8px);
+}
+
+.lang-btn {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 11px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  font-weight: 600;
+  padding: 8px 16px;
+  border: none;
+  background: transparent;
+  color: rgba(250, 247, 242, 0.6);
+  cursor: pointer;
+  border-radius: 100px;
+  transition: all 0.2s ease;
+}
+
+.lang-btn:hover {
+  color: var(--paper);
+}
+
+.lang-btn.active {
+  background: var(--accent);
+  color: var(--paper);
+}
+
+@media (max-width: 640px) {
+  .lang-toggle {
+    top: 20px;
+    right: 20px;
+  }
+  .lang-btn {
+    padding: 6px 12px;
+    font-size: 10px;
+  }
+}
 </style>
 </head>
 <body>
 
 <!-- ─── HERO ─── -->
 <header class="hero">
+  <div class="lang-toggle">
+    <button class="lang-btn active" data-lang="en" onclick="setLanguage('en')">EN</button>
+    <button class="lang-btn" data-lang="ceb" onclick="setLanguage('ceb')">CEB</button>
+  </div>
   <div class="wrap">
-    <span class="eyebrow">JC Web Design Standard Operating Procedure</span>
-    <h1 class="title">The complete <em>beginner's guide</em> to building a WordPress website — properly.</h1>
-    <p class="subtitle">Everything you need to know before, during, and after building a website. Written in plain language, with examples you can actually use.</p>
+    <span class="eyebrow" data-i18n="hero.eyebrow">JC Web Design Standard Operating Procedure</span>
+    <h1 class="title"><span data-i18n="hero.title.before">The complete </span><em data-i18n="hero.title.em">beginner's guide</em><span data-i18n="hero.title.after"> to building a WordPress website — properly.</span></h1>
+    <p class="subtitle" data-i18n="hero.subtitle">Everything you need to know before, during, and after building a website. Written in plain language, with examples you can actually use.</p>
     <div class="meta-strip">
-      <div class="meta-item">Read time<strong>~25 minutes</strong></div>
-      <div class="meta-item">Skill level<strong>Beginner-friendly</strong></div>
-      <div class="meta-item">Covers<strong>14 core topics</strong></div>
+      <div class="meta-item"><span data-i18n="hero.meta.read">Read time</span><strong data-i18n="hero.meta.read.value">~25 minutes</strong></div>
+      <div class="meta-item"><span data-i18n="hero.meta.skill">Skill level</span><strong data-i18n="hero.meta.skill.value">Beginner-friendly</strong></div>
+      <div class="meta-item"><span data-i18n="hero.meta.covers">Covers</span><strong data-i18n="hero.meta.covers.value">14 core topics</strong></div>
     </div>
   </div>
 </header>
@@ -590,21 +643,21 @@ footer .small {
 <!-- ─── TOC ─── -->
 <nav class="toc">
   <div class="wrap">
-    <h2>Table of Contents</h2>
-    <p class="toc-sub">Read top to bottom your first time. Use as a reference after that.</p>
+    <h2 data-i18n="toc.title">Table of Contents</h2>
+    <p class="toc-sub" data-i18n="toc.sub">Read top to bottom your first time. Use as a reference after that.</p>
     <div class="toc-grid">
-      <a href="#ch01" class="toc-item"><span class="toc-num">01</span><span class="toc-label">Words You'll Hear (Glossary)</span></a>
-      <a href="#ch02" class="toc-item"><span class="toc-num">02</span><span class="toc-label">Best Approach to Designing a Website</span></a>
-      <a href="#ch03" class="toc-item"><span class="toc-num">03</span><span class="toc-label">Structuring a Website</span></a>
-      <a href="#ch04" class="toc-item"><span class="toc-num">04</span><span class="toc-label">SEO Heading Tags (H1, H2, H3)</span></a>
-      <a href="#ch05" class="toc-item"><span class="toc-num">05</span><span class="toc-label">Header & Footer Standards</span></a>
-      <a href="#ch06" class="toc-item"><span class="toc-num">06</span><span class="toc-label">Padding & Spacing (px, %, em, rem)</span></a>
-      <a href="#ch07" class="toc-item"><span class="toc-num">07</span><span class="toc-label">Section-by-Section Workflow</span></a>
-      <a href="#ch08" class="toc-item"><span class="toc-num">08</span><span class="toc-label">Font Size Guide</span></a>
-      <a href="#ch09" class="toc-item"><span class="toc-num">09</span><span class="toc-label">Image Sizes (Web Standard)</span></a>
-      <a href="#ch10" class="toc-item"><span class="toc-num">10</span><span class="toc-label">Image Naming & Format Guide</span></a>
-      <a href="#ch11" class="toc-item"><span class="toc-num">11</span><span class="toc-label">Free Resources (Figma, Icons)</span></a>
-      <a href="#ch12" class="toc-item"><span class="toc-num">12</span><span class="toc-label">WordPress Review & Testing Process</span></a>
+      <a href="#ch01" class="toc-item"><span class="toc-num">01</span><span class="toc-label" data-i18n="toc.01">Words You'll Hear (Glossary)</span></a>
+      <a href="#ch02" class="toc-item"><span class="toc-num">02</span><span class="toc-label" data-i18n="toc.02">Best Approach to Designing a Website</span></a>
+      <a href="#ch03" class="toc-item"><span class="toc-num">03</span><span class="toc-label" data-i18n="toc.03">Structuring a Website</span></a>
+      <a href="#ch04" class="toc-item"><span class="toc-num">04</span><span class="toc-label" data-i18n="toc.04">SEO Heading Tags (H1, H2, H3)</span></a>
+      <a href="#ch05" class="toc-item"><span class="toc-num">05</span><span class="toc-label" data-i18n="toc.05">Header & Footer Standards</span></a>
+      <a href="#ch06" class="toc-item"><span class="toc-num">06</span><span class="toc-label" data-i18n="toc.06">Padding & Spacing (px, %, em, rem)</span></a>
+      <a href="#ch07" class="toc-item"><span class="toc-num">07</span><span class="toc-label" data-i18n="toc.07">Section-by-Section Workflow</span></a>
+      <a href="#ch08" class="toc-item"><span class="toc-num">08</span><span class="toc-label" data-i18n="toc.08">Font Size Guide</span></a>
+      <a href="#ch09" class="toc-item"><span class="toc-num">09</span><span class="toc-label" data-i18n="toc.09">Image Sizes (Web Standard)</span></a>
+      <a href="#ch10" class="toc-item"><span class="toc-num">10</span><span class="toc-label" data-i18n="toc.10">Image Naming & Format Guide</span></a>
+      <a href="#ch11" class="toc-item"><span class="toc-num">11</span><span class="toc-label" data-i18n="toc.11">Free Resources (Figma, Icons)</span></a>
+      <a href="#ch12" class="toc-item"><span class="toc-num">12</span><span class="toc-label" data-i18n="toc.12">WordPress Review & Testing Process</span></a>
     </div>
   </div>
 </nav>
@@ -615,26 +668,26 @@ footer .small {
     <div class="chapter-header">
       <div class="chapter-num">01</div>
       <div class="chapter-title-block">
-        <h2>Words You'll Hear</h2>
-        <p class="chapter-intro">Before anything else — learn the language. These are the terms that pop up daily on every WordPress project. If you don't know them yet, this is where you start.</p>
+        <h2 data-i18n="ch01.title">Words You'll Hear</h2>
+        <p class="chapter-intro" data-i18n="ch01.intro">Before anything else — learn the language. These are the terms that pop up daily on every WordPress project. If you don't know them yet, this is where you start.</p>
       </div>
     </div>
 
     <div class="body">
 
-      <h3>Site environments</h3>
-      <p>A website doesn't just exist in one place. It usually has three "versions":</p>
+      <h3 data-i18n="ch01.h.envs">Site environments</h3>
+      <p data-i18n="ch01.envs.lead">A website doesn't just exist in one place. It usually has three "versions":</p>
       <dl class="terms">
-        <dt>Live Site</dt><dd>The real, public website that visitors see. Also called the <em>production site</em>.</dd>
-        <dt>Staging Site</dt><dd>A private copy of the live site used for testing before you make changes public.</dd>
-        <dt>Dev Site</dt><dd>A draft version where new features and designs are built first, before going to staging.</dd>
+        <dt>Live Site</dt><dd data-i18n="ch01.envs.live">The real, public website that visitors see. Also called the production site.</dd>
+        <dt>Staging Site</dt><dd data-i18n="ch01.envs.staging">A private copy of the live site used for testing before you make changes public.</dd>
+        <dt>Dev Site</dt><dd data-i18n="ch01.envs.dev">A draft version where new features and designs are built first, before going to staging.</dd>
       </dl>
       <div class="callout tip">
         <span class="callout-label">Simple analogy</span>
         Think of it like cooking. <strong>Dev</strong> is your test kitchen, <strong>Staging</strong> is the dish plated for tasting, and <strong>Live</strong> is what's served to the customer.
       </div>
 
-      <h3>Safety & maintenance</h3>
+      <h3 data-i18n="ch01.h.safety">Safety & maintenance</h3>
       <dl class="terms">
         <dt>Backup</dt><dd>A saved copy of the website you can restore if something breaks.</dd>
         <dt>Restore</dt><dd>The act of bringing the site back from a backup.</dd>
@@ -645,7 +698,7 @@ footer .small {
         <dt>Deployment</dt><dd>Pushing changes from staging or dev up to the live site.</dd>
       </dl>
 
-      <h3>Website foundation</h3>
+      <h3 data-i18n="ch01.h.foundation">Website foundation</h3>
       <dl class="terms">
         <dt>Domain</dt><dd>The website's address, like <code class="inline">example.com</code>.</dd>
         <dt>Hosting</dt><dd>The server (computer) where your website files actually live.</dd>
@@ -654,7 +707,7 @@ footer .small {
         <dt>SSL Certificate</dt><dd>What makes your site secure — the padlock icon in the browser.</dd>
       </dl>
 
-      <h3>WordPress building blocks</h3>
+      <h3 data-i18n="ch01.h.blocks">WordPress building blocks</h3>
       <dl class="terms">
         <dt>Theme</dt><dd>The design template of your site.</dd>
         <dt>Plugin</dt><dd>An add-on app that adds extra features (forms, SEO, security, etc.).</dd>
@@ -667,7 +720,7 @@ footer .small {
         <dt>Cache</dt><dd>A "saved snapshot" of the site that loads faster for returning visitors.</dd>
       </dl>
 
-      <h3>Design parts</h3>
+      <h3 data-i18n="ch01.h.design">Design parts</h3>
       <dl class="terms">
         <dt>Header</dt><dd>The top section of the website (logo + main menu).</dd>
         <dt>Footer</dt><dd>The bottom section (contact info, copyright, secondary links).</dd>
@@ -675,7 +728,7 @@ footer .small {
         <dt>Customizer</dt><dd>WordPress's built-in tool for adjusting colors, logo, and fonts.</dd>
       </dl>
 
-      <h3>User roles (who can do what)</h3>
+      <h3 data-i18n="ch01.h.roles">User roles (who can do what)</h3>
       <dl class="terms">
         <dt>Admin</dt><dd>Full control. Can do anything, including delete the site.</dd>
         <dt>Editor</dt><dd>Can manage and publish all posts and pages.</dd>
@@ -684,7 +737,7 @@ footer .small {
         <dt>Subscriber</dt><dd>Can only read and log in. No editing.</dd>
       </dl>
 
-      <h3>If the site sells products (WooCommerce)</h3>
+      <h3 data-i18n="ch01.h.woo">If the site sells products (WooCommerce)</h3>
       <dl class="terms">
         <dt>Cart</dt><dd>Where products go before checkout.</dd>
         <dt>Checkout</dt><dd>The page where customers pay.</dd>
@@ -693,7 +746,7 @@ footer .small {
         <dt>Gateway</dt><dd>The payment method (PayPal, Stripe, etc.).</dd>
       </dl>
 
-      <h3>Performance & security</h3>
+      <h3 data-i18n="ch01.h.perf">Performance & security</h3>
       <dl class="terms">
         <dt>CDN</dt><dd>Content Delivery Network — speeds up your site worldwide by serving files from the nearest location.</dd>
         <dt>Firewall</dt><dd>Security barrier that blocks hackers.</dd>
@@ -701,7 +754,7 @@ footer .small {
         <dt>Uptime</dt><dd>How long the site stays online without going down.</dd>
       </dl>
 
-      <a href="#" class="back-top">↑ Back to top</a>
+      <a href="#" class="back-top" data-i18n="back.top">↑ Back to top</a>
     </div>
   </div>
 </section>
@@ -712,8 +765,8 @@ footer .small {
     <div class="chapter-header">
       <div class="chapter-num">02</div>
       <div class="chapter-title-block">
-        <h2>Best Approach to Designing a Website</h2>
-        <p class="chapter-intro">Don't open Figma yet. Don't pick colors yet. Great websites start with thinking, not designing. Follow these five steps in order.</p>
+        <h2 data-i18n="ch02.title">Best Approach to Designing a Website</h2>
+        <p class="chapter-intro" data-i18n="ch02.intro">Don't open Figma yet. Don't pick colors yet. Great websites start with thinking, not designing. Follow these five steps in order.</p>
       </div>
     </div>
 
@@ -723,7 +776,7 @@ footer .small {
         <div class="phase">
           <div class="phase-header">
             <span class="phase-num">STEP 1</span>
-            <span class="phase-title">Understand the Goal</span>
+            <span class="phase-title" data-i18n="ch02.step1">Understand the Goal</span>
           </div>
           <p>Before you draw a single box, answer these three questions:</p>
           <ul>
@@ -736,7 +789,7 @@ footer .small {
         <div class="phase">
           <div class="phase-header">
             <span class="phase-num">STEP 2</span>
-            <span class="phase-title">Plan the Structure (UX)</span>
+            <span class="phase-title" data-i18n="ch02.step2">Plan the Structure (UX)</span>
           </div>
           <ul>
             <li>Create a <strong>site map</strong> — a list of every page the site will have.</li>
@@ -748,7 +801,7 @@ footer .small {
         <div class="phase">
           <div class="phase-header">
             <span class="phase-num">STEP 3</span>
-            <span class="phase-title">Design the UI (User Interface)</span>
+            <span class="phase-title" data-i18n="ch02.step3">Design the UI (User Interface)</span>
           </div>
           <ul>
             <li>Choose a clean, consistent design system: colors, fonts, spacing.</li>
@@ -761,7 +814,7 @@ footer .small {
         <div class="phase">
           <div class="phase-header">
             <span class="phase-num">STEP 4</span>
-            <span class="phase-title">Use Real Content Early</span>
+            <span class="phase-title" data-i18n="ch02.step4">Use Real Content Early</span>
           </div>
           <ul>
             <li>Avoid lorem ipsum and dummy text. Real content reveals real layout problems.</li>
@@ -772,7 +825,7 @@ footer .small {
         <div class="phase">
           <div class="phase-header">
             <span class="phase-num">STEP 5</span>
-            <span class="phase-title">Focus on Conversion</span>
+            <span class="phase-title" data-i18n="ch02.step5">Focus on Conversion</span>
           </div>
           <ul>
             <li>Add clear CTAs — buttons, forms, contact info that stand out.</li>
@@ -787,7 +840,7 @@ footer .small {
         Skipping straight to design is the #1 mistake beginners make. You'll spend weeks making something pretty that doesn't actually solve the client's business problem.
       </div>
 
-      <a href="#" class="back-top">↑ Back to top</a>
+      <a href="#" class="back-top" data-i18n="back.top">↑ Back to top</a>
     </div>
   </div>
 </section>
@@ -798,8 +851,8 @@ footer .small {
     <div class="chapter-header">
       <div class="chapter-num">03</div>
       <div class="chapter-title-block">
-        <h2>Structuring a Website</h2>
-        <p class="chapter-intro">After the design is done, here's everything you need to set up so the site actually works in the real world.</p>
+        <h2 data-i18n="ch03.title">Structuring a Website</h2>
+        <p class="chapter-intro" data-i18n="ch03.intro">After the design is done, here's everything you need to set up so the site actually works in the real world.</p>
       </div>
     </div>
 
@@ -839,7 +892,7 @@ footer .small {
         <li>Submit your <code class="inline">sitemap.xml</code> to Google.</li>
       </ul>
 
-      <a href="#" class="back-top">↑ Back to top</a>
+      <a href="#" class="back-top" data-i18n="back.top">↑ Back to top</a>
     </div>
   </div>
 </section>
@@ -850,8 +903,8 @@ footer .small {
     <div class="chapter-header">
       <div class="chapter-num">04</div>
       <div class="chapter-title-block">
-        <h2>SEO Heading Tags</h2>
-        <p class="chapter-intro">Headings (H1, H2, H3) aren't just about size — they tell Google what your page is about. Used right, they boost your ranking. Used wrong, they hurt it.</p>
+        <h2 data-i18n="ch04.title">SEO Heading Tags</h2>
+        <p class="chapter-intro" data-i18n="ch04.intro">Headings (H1, H2, H3) aren't just about size — they tell Google what your page is about. Used right, they boost your ranking. Used wrong, they hurt it.</p>
       </div>
     </div>
 
@@ -881,7 +934,7 @@ footer .small {
         <li>Supports keyword relevance when used properly.</li>
       </ul>
 
-      <a href="#" class="back-top">↑ Back to top</a>
+      <a href="#" class="back-top" data-i18n="back.top">↑ Back to top</a>
     </div>
   </div>
 </section>
@@ -892,8 +945,8 @@ footer .small {
     <div class="chapter-header">
       <div class="chapter-num">05</div>
       <div class="chapter-title-block">
-        <h2>Header & Footer Standards</h2>
-        <p class="chapter-intro">The header and footer appear on every page of the website. Get them right once, and the whole site benefits.</p>
+        <h2 data-i18n="ch05.title">Header & Footer Standards</h2>
+        <p class="chapter-intro" data-i18n="ch05.intro">The header and footer appear on every page of the website. Get them right once, and the whole site benefits.</p>
       </div>
     </div>
 
@@ -925,7 +978,7 @@ footer .small {
         <li><strong>Save reusable blocks</strong> so you can copy-paste them into other projects.</li>
       </ul>
 
-      <a href="#" class="back-top">↑ Back to top</a>
+      <a href="#" class="back-top" data-i18n="back.top">↑ Back to top</a>
     </div>
   </div>
 </section>
@@ -936,8 +989,8 @@ footer .small {
     <div class="chapter-header">
       <div class="chapter-num">06</div>
       <div class="chapter-title-block">
-        <h2>Padding & Spacing Units</h2>
-        <p class="chapter-intro">When to use <code class="inline">px</code>, <code class="inline">%</code>, <code class="inline">em</code>, or <code class="inline">rem</code>. Choosing the wrong one is why so many sites break on mobile.</p>
+        <h2 data-i18n="ch06.title">Padding & Spacing Units</h2>
+        <p class="chapter-intro" data-i18n="ch06.intro">When to use <code class="inline">px</code>, <code class="inline">%</code>, <code class="inline">em</code>, or <code class="inline">rem</code>. Choosing the wrong one is why so many sites break on mobile.</p>
       </div>
     </div>
 
@@ -970,14 +1023,14 @@ footer .small {
         <li><strong>Best for:</strong> consistent spacing tied to text size, so everything feels uniform.</li>
       </ul>
 
-      <h3>The JC simple rule</h3>
+      <h3 data-i18n="ch06.rule.title">The JC simple rule</h3>
       <div class="callout tip">
         <span class="callout-label">Memorize this one rule</span>
         <strong>Left & Right padding = 20px</strong> on every section, desktop and mobile. Always. No exceptions.<br><br>
         Why? Easy to remember, easy to apply, and any section you build is instantly copyable to the next project — the spacing is already correct.
       </div>
 
-      <p>Once L/R is locked at 20px, you only need to think about <strong>top and bottom</strong> padding (which changes between desktop and mobile). Everything else stays the same.</p>
+      <p data-i18n="ch06.rule.lead">Once L/R is locked at 20px, you only need to think about top and bottom padding (which changes between desktop and mobile). Everything else stays the same.</p>
 
       <h3>Other quick rules</h3>
       <ul>
@@ -995,7 +1048,7 @@ footer .small {
         <strong>Button padding:</strong> <code class="inline">12px 24px</code>
       </div>
 
-      <a href="#" class="back-top">↑ Back to top</a>
+      <a href="#" class="back-top" data-i18n="back.top">↑ Back to top</a>
     </div>
   </div>
 </section>
@@ -1006,8 +1059,8 @@ footer .small {
     <div class="chapter-header">
       <div class="chapter-num">07</div>
       <div class="chapter-title-block">
-        <h2>Section-by-Section Workflow</h2>
-        <p class="chapter-intro">The fastest way to build a site: finish one section completely (desktop + mobile) before moving to the next. With L/R padding locked at 20px, every section becomes copy-paste ready.</p>
+        <h2 data-i18n="ch07.title">Section-by-Section Workflow</h2>
+        <p class="chapter-intro" data-i18n="ch07.intro">The fastest way to build a site: finish one section completely (desktop + mobile) before moving to the next. With L/R padding locked at 20px, every section becomes copy-paste ready.</p>
       </div>
     </div>
 
@@ -1020,7 +1073,7 @@ footer .small {
         Only <strong>top & bottom</strong> changes between desktop and mobile.
       </div>
 
-      <h3>The Workflow</h3>
+      <h3 data-i18n="ch07.workflow.h">The Workflow</h3>
       <ol>
         <li><strong>Pick one section</strong> (e.g., Hero).</li>
         <li><strong>Build the desktop version</strong> with the standard padding below.</li>
@@ -1029,7 +1082,7 @@ footer .small {
         <li><strong>Move to the next section</strong> and repeat.</li>
       </ol>
 
-      <p>Because every section uses the same 20px L/R padding, you can copy any section to a new project and it will already have the correct spacing.</p>
+      <p data-i18n="ch07.workflow.note">Because every section uses the same 20px L/R padding, you can copy any section to a new project and it will already have the correct spacing.</p>
 
       <h3>Standard Section Padding</h3>
 
@@ -1145,7 +1198,7 @@ footer .small {
         <li><strong>Don't change L/R padding per section.</strong> If you do, your site loses its consistent rhythm.</li>
       </ul>
 
-      <a href="#" class="back-top">↑ Back to top</a>
+      <a href="#" class="back-top" data-i18n="back.top">↑ Back to top</a>
     </div>
   </div>
 </section>
@@ -1156,8 +1209,8 @@ footer .small {
     <div class="chapter-header">
       <div class="chapter-num">08</div>
       <div class="chapter-title-block">
-        <h2>Font Size Guide</h2>
-        <p class="chapter-intro">A complete typographic scale. The same one you'll use on every JC project. Memorize the body sizes; reference the rest.</p>
+        <h2 data-i18n="ch08.title">Font Size Guide</h2>
+        <p class="chapter-intro" data-i18n="ch08.intro">A complete typographic scale. The same one you'll use on every JC project. Memorize the body sizes; reference the rest.</p>
       </div>
     </div>
 
@@ -1269,7 +1322,7 @@ footer .small {
         <strong>Disable Google Fonts and upload the font files manually</strong> to the site. This dramatically improves loading speed. Convert your font to a web font format using <a href="https://transfonter.org" style="color:var(--warn);">transfonter.org</a> first.
       </div>
 
-      <a href="#" class="back-top">↑ Back to top</a>
+      <a href="#" class="back-top" data-i18n="back.top">↑ Back to top</a>
     </div>
   </div>
 </section>
@@ -1280,8 +1333,8 @@ footer .small {
     <div class="chapter-header">
       <div class="chapter-num">09</div>
       <div class="chapter-title-block">
-        <h2>Image Sizes (Web Standard)</h2>
-        <p class="chapter-intro">Right size, right format, right alt text. This is the difference between a fast site and a slow one.</p>
+        <h2 data-i18n="ch09.title">Image Sizes (Web Standard)</h2>
+        <p class="chapter-intro" data-i18n="ch09.intro">Right size, right format, right alt text. This is the difference between a fast site and a slow one.</p>
       </div>
     </div>
 
@@ -1352,7 +1405,7 @@ footer .small {
         <strong>Alt Text:</strong> "Kitchen renovation in Austin with white marble countertops"
       </div>
 
-      <a href="#" class="back-top">↑ Back to top</a>
+      <a href="#" class="back-top" data-i18n="back.top">↑ Back to top</a>
     </div>
   </div>
 </section>
@@ -1363,8 +1416,8 @@ footer .small {
     <div class="chapter-header">
       <div class="chapter-num">10</div>
       <div class="chapter-title-block">
-        <h2>Image Naming & Format Guide</h2>
-        <p class="chapter-intro">A naming convention so consistent that any teammate can find any file in seconds, and a format guide so you never use the wrong file type again.</p>
+        <h2 data-i18n="ch10.title">Image Naming & Format Guide</h2>
+        <p class="chapter-intro" data-i18n="ch10.intro">A naming convention so consistent that any teammate can find any file in seconds, and a format guide so you never use the wrong file type again.</p>
       </div>
     </div>
 
@@ -1497,7 +1550,7 @@ faq-accordion-open-icon.svg</pre>
         </table>
       </div>
 
-      <a href="#" class="back-top">↑ Back to top</a>
+      <a href="#" class="back-top" data-i18n="back.top">↑ Back to top</a>
     </div>
   </div>
 </section>
@@ -1508,8 +1561,8 @@ faq-accordion-open-icon.svg</pre>
     <div class="chapter-header">
       <div class="chapter-num">11</div>
       <div class="chapter-title-block">
-        <h2>Free Resources</h2>
-        <p class="chapter-intro">Tools and sites the team uses on every project. Bookmark these.</p>
+        <h2 data-i18n="ch11.title">Free Resources</h2>
+        <p class="chapter-intro" data-i18n="ch11.intro">Tools and sites the team uses on every project. Bookmark these.</p>
       </div>
     </div>
 
@@ -1539,7 +1592,7 @@ faq-accordion-open-icon.svg</pre>
         <li><strong>Screaming Frog SEO Spider</strong> — comprehensive site crawling (paid)</li>
       </ul>
 
-      <a href="#" class="back-top">↑ Back to top</a>
+      <a href="#" class="back-top" data-i18n="back.top">↑ Back to top</a>
     </div>
   </div>
 </section>
@@ -1550,8 +1603,8 @@ faq-accordion-open-icon.svg</pre>
     <div class="chapter-header">
       <div class="chapter-num">12</div>
       <div class="chapter-title-block">
-        <h2>WordPress Review & Testing Process</h2>
-        <p class="chapter-intro">The full pre-launch checklist. Run through this in order, every time, before any site goes live. No skipping.</p>
+        <h2 data-i18n="ch12.title">WordPress Review & Testing Process</h2>
+        <p class="chapter-intro" data-i18n="ch12.intro">The full pre-launch checklist. Run through this in order, every time, before any site goes live. No skipping.</p>
       </div>
     </div>
 
@@ -1797,7 +1850,7 @@ faq-accordion-open-icon.svg</pre>
         <li>Fix missing images in the WordPress Media Library</li>
       </ol>
 
-      <a href="#" class="back-top">↑ Back to top</a>
+      <a href="#" class="back-top" data-i18n="back.top">↑ Back to top</a>
     </div>
   </div>
 </section>
@@ -1805,10 +1858,318 @@ faq-accordion-open-icon.svg</pre>
 <!-- ─── FOOTER ─── -->
 <footer>
   <div class="wrap">
-    <div class="sig">JC Web Design SOP</div>
-    <div class="small">For questions or additions, contact your project lead.</div>
+    <div class="sig" data-i18n="footer.sig">JC Web Design SOP</div>
+    <div class="small" data-i18n="footer.small">For questions or additions, contact your project lead.</div>
   </div>
 </footer>
+
+<script>
+const translations = {
+  en: {
+    // ─── Hero ───
+    "hero.eyebrow": "JC Web Design Standard Operating Procedure",
+    "hero.title.before": "The complete ",
+    "hero.title.em": "beginner's guide",
+    "hero.title.after": " to building a WordPress website — properly.",
+    "hero.subtitle": "Everything you need to know before, during, and after building a website. Written in plain language, with examples you can actually use.",
+    "hero.meta.read": "Read time",
+    "hero.meta.read.value": "~25 minutes",
+    "hero.meta.skill": "Skill level",
+    "hero.meta.skill.value": "Beginner-friendly",
+    "hero.meta.covers": "Covers",
+    "hero.meta.covers.value": "14 core topics",
+
+    // ─── TOC ───
+    "toc.title": "Table of Contents",
+    "toc.sub": "Read top to bottom your first time. Use as a reference after that.",
+    "toc.01": "Words You'll Hear (Glossary)",
+    "toc.02": "Best Approach to Designing a Website",
+    "toc.03": "Structuring a Website",
+    "toc.04": "SEO Heading Tags (H1, H2, H3)",
+    "toc.05": "Header & Footer Standards",
+    "toc.06": "Padding & Spacing (px, %, em, rem)",
+    "toc.07": "Section-by-Section Workflow",
+    "toc.08": "Font Size Guide",
+    "toc.09": "Image Sizes (Web Standard)",
+    "toc.10": "Image Naming & Format Guide",
+    "toc.11": "Free Resources (Figma, Icons)",
+    "toc.12": "WordPress Review & Testing Process",
+
+    // ─── Chapter Titles & Intros ───
+    "ch01.title": "Words You'll Hear",
+    "ch01.intro": "Before anything else — learn the language. These are the terms that pop up daily on every WordPress project. If you don't know them yet, this is where you start.",
+    "ch02.title": "Best Approach to Designing a Website",
+    "ch02.intro": "Don't open Figma yet. Don't pick colors yet. Great websites start with thinking, not designing. Follow these five steps in order.",
+    "ch03.title": "Structuring a Website",
+    "ch03.intro": "After the design is done, here's everything you need to set up so the site actually works in the real world.",
+    "ch04.title": "SEO Heading Tags",
+    "ch04.intro": "Headings (H1, H2, H3) aren't just about size — they tell Google what your page is about. Used right, they boost your ranking. Used wrong, they hurt it.",
+    "ch05.title": "Header & Footer Standards",
+    "ch05.intro": "The header and footer appear on every page of the website. Get them right once, and the whole site benefits.",
+    "ch06.title": "Padding & Spacing Units",
+    "ch06.intro": "When to use px, %, em, or rem. Choosing the wrong one is why so many sites break on mobile.",
+    "ch07.title": "Section-by-Section Workflow",
+    "ch07.intro": "The fastest way to build a site: finish one section completely (desktop + mobile) before moving to the next. With L/R padding locked at 20px, every section becomes copy-paste ready.",
+    "ch08.title": "Font Size Guide",
+    "ch08.intro": "A complete typographic scale. The same one you'll use on every JC project. Memorize the body sizes; reference the rest.",
+    "ch09.title": "Image Sizes (Web Standard)",
+    "ch09.intro": "Right size, right format, right alt text. This is the difference between a fast site and a slow one.",
+    "ch10.title": "Image Naming & Format Guide",
+    "ch10.intro": "A naming convention so consistent that any teammate can find any file in seconds, and a format guide so you never use the wrong file type again.",
+    "ch11.title": "Free Resources",
+    "ch11.intro": "Tools and sites the team uses on every project. Bookmark these.",
+    "ch12.title": "WordPress Review & Testing Process",
+    "ch12.intro": "The full pre-launch checklist. Run through this in order, every time, before any site goes live. No skipping.",
+
+    // ─── Common labels ───
+    "label.tip": "Simple analogy",
+    "label.example": "Example",
+    "label.warn": "Watch out",
+    "label.important": "Important — for performance",
+    "label.standard": "JC Standard Padding",
+    "label.memorize": "Memorize this one rule",
+    "label.golden": "JC Padding Standard",
+    "label.real_hero": "Real Hero example",
+    "label.do": "✓ Do",
+    "label.dont": "✗ Don't",
+    "label.use_when": "✓ Use when",
+    "label.avoid_when": "✗ Avoid when",
+    "label.standard_in_wild": "Standard practice in the wild",
+    "label.example_struct": "Example structure",
+    "label.why_order": "Why this order matters",
+    "back.top": "↑ Back to top",
+    "footer.sig": "JC Web Design SOP",
+    "footer.small": "For questions or additions, contact your project lead.",
+
+    // ─── Chapter 1 sections ───
+    "ch01.h.envs": "Site environments",
+    "ch01.envs.lead": "A website doesn't just exist in one place. It usually has three \"versions\":",
+    "ch01.envs.live": "The real, public website that visitors see. Also called the production site.",
+    "ch01.envs.staging": "A private copy of the live site used for testing before you make changes public.",
+    "ch01.envs.dev": "A draft version where new features and designs are built first, before going to staging.",
+    "ch01.analogy": "Think of it like cooking. Dev is your test kitchen, Staging is the dish plated for tasting, and Live is what's served to the customer.",
+    "ch01.h.safety": "Safety & maintenance",
+    "ch01.h.foundation": "Website foundation",
+    "ch01.h.blocks": "WordPress building blocks",
+    "ch01.h.design": "Design parts",
+    "ch01.h.roles": "User roles (who can do what)",
+    "ch01.h.woo": "If the site sells products (WooCommerce)",
+    "ch01.h.perf": "Performance & security",
+
+    // ─── Chapter 2 ───
+    "ch02.step1": "Understand the Goal",
+    "ch02.step1.lead": "Before you draw a single box, answer these three questions:",
+    "ch02.step1.audience": "Who is the target audience?",
+    "ch02.step1.audience.desc": "Who are we building this for?",
+    "ch02.step1.purpose": "What is the main purpose?",
+    "ch02.step1.purpose.desc": "Sales, info, bookings, leads?",
+    "ch02.step1.action": "What action should users take?",
+    "ch02.step1.action.desc": "This is the CTA (Call To Action) — buy, call, sign up, download.",
+    "ch02.step2": "Plan the Structure (UX)",
+    "ch02.step2.sitemap": "Create a site map — a list of every page the site will have.",
+    "ch02.step2.wireframe": "Sketch a wireframe — a rough layout of each page (Home, About, Services, etc.).",
+    "ch02.step2.flow": "Plan the user flow — how a visitor moves from one page to the next.",
+    "ch02.step3": "Design the UI (User Interface)",
+    "ch02.step3.system": "Choose a clean, consistent design system: colors, fonts, spacing.",
+    "ch02.step3.grid": "Use a grid layout and proper hierarchy (H1 → H2 → H3).",
+    "ch02.step3.responsive": "Design for both desktop and mobile (this is what \"responsive\" means).",
+    "ch02.step3.workflow": "Work section-by-section: finish one section completely (desktop → mobile) before moving to the next. See Chapter 07 for the full workflow.",
+    "ch02.step4": "Use Real Content Early",
+    "ch02.step4.lorem": "Avoid lorem ipsum and dummy text. Real content reveals real layout problems.",
+    "ch02.step4.optimize": "Optimize images, icons, and graphics. Use TinyPNG for images and HandBrake for video.",
+    "ch02.step5": "Focus on Conversion",
+    "ch02.step5.cta": "Add clear CTAs — buttons, forms, contact info that stand out.",
+    "ch02.step5.trust": "Build trust with testimonials, certifications, real photos.",
+    "ch02.step5.clutter": "Avoid clutter. Whitespace is your friend.",
+    "ch02.why": "Skipping straight to design is the #1 mistake beginners make. You'll spend weeks making something pretty that doesn't actually solve the client's business problem.",
+
+    // ─── Chapter 6 — JC simple rule ───
+    "ch06.rule.title": "The JC simple rule",
+    "ch06.rule.body": "Left & Right padding = 20px on every section, desktop and mobile. Always. No exceptions.",
+    "ch06.rule.why": "Why? Easy to remember, easy to apply, and any section you build is instantly copyable to the next project — the spacing is already correct.",
+    "ch06.rule.lead": "Once L/R is locked at 20px, you only need to think about top and bottom padding (which changes between desktop and mobile). Everything else stays the same.",
+
+    // ─── Chapter 7 ───
+    "ch07.golden": "Left & Right = 20px on every section — desktop and mobile, same value. Easy to remember, easy to copy.",
+    "ch07.golden.note": "Only top & bottom changes between desktop and mobile.",
+    "ch07.workflow.h": "The Workflow",
+    "ch07.workflow.s1": "Pick one section (e.g., Hero).",
+    "ch07.workflow.s2": "Build the desktop version with the standard padding below.",
+    "ch07.workflow.s3": "Switch to mobile view and adjust top/bottom padding (L/R stays 20px).",
+    "ch07.workflow.s4": "Save the section as a reusable block.",
+    "ch07.workflow.s5": "Move to the next section and repeat.",
+    "ch07.workflow.note": "Because every section uses the same 20px L/R padding, you can copy any section to a new project and it will already have the correct spacing.",
+    "ch07.desktop_first": "Desktop (build first)",
+    "ch07.mobile_next": "Mobile (do this next)"
+  },
+
+  ceb: {
+    // ─── Hero ───
+    "hero.eyebrow": "JC Web Design Standard Operating Procedure",
+    "hero.title.before": "Ang kompleto nga ",
+    "hero.title.em": "giya para sa mga beginner",
+    "hero.title.after": " sa paghimo og WordPress website — sa hustong paagi.",
+    "hero.subtitle": "Tanan nga kinahanglan nimong mahibal-an sa wala pa, sulod sa, ug pagkahuman sa paghimo og website. Sinulat sa simple nga pinulongan, naa pay mga ehemplo nga magamit gyud nimo.",
+    "hero.meta.read": "Read time",
+    "hero.meta.read.value": "~25 minutos",
+    "hero.meta.skill": "Skill level",
+    "hero.meta.skill.value": "Para sa beginner",
+    "hero.meta.covers": "Naglakip",
+    "hero.meta.covers.value": "14 ka topic",
+
+    // ─── TOC ───
+    "toc.title": "Mga Sulod",
+    "toc.sub": "Basaha gikan sa taas paubos sa imong unang basa. Pwede gamiton isip reference sunod.",
+    "toc.01": "Mga Pulong nga Madunggan Nimo (Glossary)",
+    "toc.02": "Pinakamaayo nga Paagi sa Pag-design og Website",
+    "toc.03": "Pag-structure sa Website",
+    "toc.04": "SEO Heading Tags (H1, H2, H3)",
+    "toc.05": "Header & Footer Standards",
+    "toc.06": "Padding & Spacing (px, %, em, rem)",
+    "toc.07": "Section-by-Section Workflow",
+    "toc.08": "Giya sa Font Size",
+    "toc.09": "Image Sizes (Web Standard)",
+    "toc.10": "Giya sa Pag-naming og Pag-format sa Image",
+    "toc.11": "Libre nga Resources (Figma, Icons)",
+    "toc.12": "WordPress Review & Testing Process",
+
+    // ─── Chapter Titles & Intros ───
+    "ch01.title": "Mga Pulong nga Madunggan Nimo",
+    "ch01.intro": "Sa wala pa ang tanan — kat-oni ang pinulongan. Mao ni ang mga termino nga sigeg gamit kada adlaw sa mga WordPress project. Kung wala pa ka kabalo ani, dinhi ka magsugod.",
+    "ch02.title": "Pinakamaayo nga Paagi sa Pag-design og Website",
+    "ch02.intro": "Ayaw una pag-abli og Figma. Ayaw una pagpili og kolor. Ang maayong website magsugod sa paghuna-huna, dili sa pag-design. Sunda ni nga lima ka step in order.",
+    "ch03.title": "Pag-structure sa Website",
+    "ch03.intro": "Pagkahuman sa design, ania ang tanan nga kinahanglan i-setup aron mo-gana ang site sa real world.",
+    "ch04.title": "SEO Heading Tags",
+    "ch04.intro": "Ang mga heading (H1, H2, H3) dili lang bahin sa size — gisultian niini ang Google kung unsa ang sulod sa imong page. Kung husto ang gamit, mo-saka ang ranking. Kung sayop, mo-baba.",
+    "ch05.title": "Header & Footer Standards",
+    "ch05.intro": "Ang header ug footer makita sa kada page sa website. Husto-a kini sa kausa, ug ma-benefit ang tibuok site.",
+    "ch06.title": "Padding & Spacing Units",
+    "ch06.intro": "Kanus-a gamiton ang px, %, em, o rem. Ang sayop nga pagpili mao ang rason nga daghan nga site maguba sa mobile.",
+    "ch07.title": "Section-by-Section Workflow",
+    "ch07.intro": "Ang pinakapaspas nga paagi sa paghimo og site: humanon ang usa ka section (desktop + mobile) sa wala pa ipadayon sa sunod. Kung 20px na ang L/R padding, kada section pwede na ma-copy-paste dayon.",
+    "ch08.title": "Giya sa Font Size",
+    "ch08.intro": "Ang kompleto nga typographic scale. Mao ni ang gamiton sa kada JC project. I-memoryaha ang body sizes; i-reference ang uban.",
+    "ch09.title": "Image Sizes (Web Standard)",
+    "ch09.intro": "Husto nga size, husto nga format, husto nga alt text. Mao ni ang kalainan sa kusog nga site ug sa hinay.",
+    "ch10.title": "Giya sa Pag-naming og Pag-format sa Image",
+    "ch10.intro": "Usa ka naming convention nga consistent kaayo aron makit-an sa imong teammate ang bisan unsang file sa segundo, ug usa ka format guide aron dili na ka magamit og sayop nga file type.",
+    "ch11.title": "Libre nga Resources",
+    "ch11.intro": "Mga tool og site nga gigamit sa team kada project. I-bookmark ni.",
+    "ch12.title": "WordPress Review & Testing Process",
+    "ch12.intro": "Ang kompleto nga pre-launch checklist. Sundon kini in order, kada higayon, sa wala pa mag-live ang bisan unsang site. Walay laktaw.",
+
+    // ─── Common labels ───
+    "label.tip": "Simple nga analogy",
+    "label.example": "Ehemplo",
+    "label.warn": "Bantayi",
+    "label.important": "Importante — para sa performance",
+    "label.standard": "JC Standard Padding",
+    "label.memorize": "I-memoryaha ni nga usa ka rule",
+    "label.golden": "JC Padding Standard",
+    "label.real_hero": "Real Hero ehemplo",
+    "label.do": "✓ Buhata",
+    "label.dont": "✗ Ayaw",
+    "label.use_when": "✓ Gamita kung",
+    "label.avoid_when": "✗ Likayi kung",
+    "label.standard_in_wild": "Standard nga gigamit sa real",
+    "label.example_struct": "Ehemplo nga structure",
+    "label.why_order": "Ngano nga importante ang order",
+    "back.top": "↑ Balik sa taas",
+    "footer.sig": "JC Web Design SOP",
+    "footer.small": "Para sa pangutana o dugang, kontaka ang imong project lead.",
+
+    // ─── Chapter 1 ───
+    "ch01.h.envs": "Mga environment sa site",
+    "ch01.envs.lead": "Ang website dili lang naa sa usa ka lugar. Naay tulo ka \"version\" sagad:",
+    "ch01.envs.live": "Ang tinuod, public nga website nga makita sa mga visitor. Gitawag pud nga production site.",
+    "ch01.envs.staging": "Private nga copy sa live site nga gigamit pang-test sa wala pa i-publish ang mga changes.",
+    "ch01.envs.dev": "Draft nga version diin gibuhat una ang mga bag-ong feature ug design, sa wala pa moadto sa staging.",
+    "ch01.analogy": "Isipa nga sama sa pagluto. Ang Dev mao ang imong test kitchen, ang Staging mao ang plato para sa tasting, ug ang Live mao ang ihatag sa customer.",
+    "ch01.h.safety": "Safety & maintenance",
+    "ch01.h.foundation": "Pundasyon sa website",
+    "ch01.h.blocks": "Mga building block sa WordPress",
+    "ch01.h.design": "Mga parte sa design",
+    "ch01.h.roles": "User roles (kinsa unsay pwede buhaton)",
+    "ch01.h.woo": "Kung mag-baligya ang site og produkto (WooCommerce)",
+    "ch01.h.perf": "Performance & security",
+
+    // ─── Chapter 2 ───
+    "ch02.step1": "Sabta ang Goal",
+    "ch02.step1.lead": "Sa wala pa ka makahimo og bisan usa ka kahon, tubaga ni nga tulo ka pangutana:",
+    "ch02.step1.audience": "Kinsa ang target audience?",
+    "ch02.step1.audience.desc": "Para kang kinsa ni gibuhat?",
+    "ch02.step1.purpose": "Unsay main purpose?",
+    "ch02.step1.purpose.desc": "Sales, info, bookings, leads?",
+    "ch02.step1.action": "Unsay buhaton sa users?",
+    "ch02.step1.action.desc": "Mao ni ang CTA (Call To Action) — palit, tawag, sign up, download.",
+    "ch02.step2": "Planoha ang Structure (UX)",
+    "ch02.step2.sitemap": "Paghimo og site map — listahan sa tanang pages sa site.",
+    "ch02.step2.wireframe": "Pag-sketch og wireframe — rough nga layout sa kada page (Home, About, Services, ubp.).",
+    "ch02.step2.flow": "Planoha ang user flow — kung unsaon paglihok sa visitor gikan sa usa ka page paingon sa sunod.",
+    "ch02.step3": "I-design ang UI (User Interface)",
+    "ch02.step3.system": "Pagpili og clean ug consistent nga design system: kolor, font, spacing.",
+    "ch02.step3.grid": "Gamita ang grid layout ug husto nga hierarchy (H1 → H2 → H3).",
+    "ch02.step3.responsive": "I-design para sa desktop ug mobile (mao ni ang gipasabot sa \"responsive\").",
+    "ch02.step3.workflow": "Trabaho section-by-section: humanon ang usa ka section (desktop → mobile) sa wala pa ipadayon sa sunod. Tan-awa ang Chapter 07 para sa full workflow.",
+    "ch02.step4": "Gamita ang Real Content Sayo",
+    "ch02.step4.lorem": "Likayi ang lorem ipsum ug dummy text. Ang real content magpakita sa real layout nga problema.",
+    "ch02.step4.optimize": "I-optimize ang images, icons, ug graphics. Gamita ang TinyPNG para sa images ug HandBrake para sa video.",
+    "ch02.step5": "Pag-focus sa Conversion",
+    "ch02.step5.cta": "Pagdugang og clear nga CTAs — buttons, forms, contact info nga prominent.",
+    "ch02.step5.trust": "Pagtukod og trust gamit ang testimonials, certifications, real nga mga photo.",
+    "ch02.step5.clutter": "Likayi ang clutter. Whitespace ang imong amigo.",
+    "ch02.why": "Ang pag-laktaw direkta sa design mao ang #1 nga sayop sa mga beginner. Mag-gugol kag semana sa paghimo og nindot pero dili gyud niya masulbad ang business problem sa client.",
+
+    // ─── Chapter 6 ───
+    "ch06.rule.title": "Ang simple nga JC rule",
+    "ch06.rule.body": "Left & Right padding = 20px sa kada section, desktop ug mobile. Permanente. Walay exception.",
+    "ch06.rule.why": "Ngano? Sayon hinumdoman, sayon i-apply, ug bisan unsang section nga imong gibuhat pwede dayon i-copy sa sunod nga project — husto na ang spacing.",
+    "ch06.rule.lead": "Kung 20px na ang L/R, top ug bottom padding na lang ang huna-hunaon (nga mag-usab tali sa desktop ug mobile). Tanang uban magpabilin pareho.",
+
+    // ─── Chapter 7 ───
+    "ch07.golden": "Left & Right = 20px sa kada section — desktop ug mobile, parehas nga value. Sayon hinumdoman, sayon i-copy.",
+    "ch07.golden.note": "Top & bottom ra ang mag-usab tali sa desktop ug mobile.",
+    "ch07.workflow.h": "Ang Workflow",
+    "ch07.workflow.s1": "Pagpili og usa ka section (e.g., Hero).",
+    "ch07.workflow.s2": "Buhata ang desktop version gamit ang standard padding sa ubos.",
+    "ch07.workflow.s3": "Adto sa mobile view ug i-adjust ang top/bottom padding (L/R magpabilin nga 20px).",
+    "ch07.workflow.s4": "I-save ang section isip reusable block.",
+    "ch07.workflow.s5": "Adto sa sunod nga section ug balika.",
+    "ch07.workflow.note": "Tungod kay kada section naggamit og parehas nga 20px L/R padding, pwede nimo i-copy bisan unsang section sa bag-ong project ug husto na dayon ang spacing.",
+    "ch07.desktop_first": "Desktop (buhaton una)",
+    "ch07.mobile_next": "Mobile (sunod)"
+  }
+};
+
+function setLanguage(lang) {
+  // Update active button state
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.dataset.lang === lang);
+  });
+
+  // Update html lang attribute
+  document.documentElement.lang = lang === 'ceb' ? 'ceb' : 'en';
+
+  // Translate every element with a data-i18n key
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (translations[lang] && translations[lang][key]) {
+      el.textContent = translations[lang][key];
+    }
+  });
+
+  // Save preference
+  try { localStorage.setItem('jc-lang', lang); } catch(e) {}
+}
+
+// Note: localStorage not available in Claude artifacts environment, but works in real browsers
+document.addEventListener('DOMContentLoaded', () => {
+  let saved = 'en';
+  try { saved = localStorage.getItem('jc-lang') || 'en'; } catch(e) {}
+  if (saved !== 'en') setLanguage(saved);
+});
+</script>
 
 </body>
 </html>
