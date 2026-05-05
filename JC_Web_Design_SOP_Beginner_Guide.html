@@ -599,7 +599,7 @@ footer .small {
       <a href="#ch04" class="toc-item"><span class="toc-num">04</span><span class="toc-label">SEO Heading Tags (H1, H2, H3)</span></a>
       <a href="#ch05" class="toc-item"><span class="toc-num">05</span><span class="toc-label">Header & Footer Standards</span></a>
       <a href="#ch06" class="toc-item"><span class="toc-num">06</span><span class="toc-label">Padding & Spacing (px, %, em, rem)</span></a>
-      <a href="#ch07" class="toc-item"><span class="toc-num">07</span><span class="toc-label">Wireframe Padding (Desktop vs Mobile)</span></a>
+      <a href="#ch07" class="toc-item"><span class="toc-num">07</span><span class="toc-label">Section-by-Section Workflow</span></a>
       <a href="#ch08" class="toc-item"><span class="toc-num">08</span><span class="toc-label">Font Size Guide</span></a>
       <a href="#ch09" class="toc-item"><span class="toc-num">09</span><span class="toc-label">Image Sizes (Web Standard)</span></a>
       <a href="#ch10" class="toc-item"><span class="toc-num">10</span><span class="toc-label">Image Naming & Format Guide</span></a>
@@ -754,6 +754,7 @@ footer .small {
             <li>Choose a clean, consistent design system: colors, fonts, spacing.</li>
             <li>Use a <strong>grid layout</strong> and proper hierarchy (H1 → H2 → H3).</li>
             <li>Design for both desktop and mobile (this is what "responsive" means).</li>
+            <li><strong>Work section-by-section:</strong> finish one section completely (desktop → mobile) before moving to the next. See <a href="#ch07" style="color:var(--accent);">Chapter 07</a> for the full workflow.</li>
           </ul>
         </div>
 
@@ -969,20 +970,29 @@ footer .small {
         <li><strong>Best for:</strong> consistent spacing tied to text size, so everything feels uniform.</li>
       </ul>
 
-      <h3>The expert approach</h3>
+      <h3>The JC simple rule</h3>
+      <div class="callout tip">
+        <span class="callout-label">Memorize this one rule</span>
+        <strong>Left & Right padding = 20px</strong> on every section, desktop and mobile. Always. No exceptions.<br><br>
+        Why? Easy to remember, easy to apply, and any section you build is instantly copyable to the next project — the spacing is already correct.
+      </div>
+
+      <p>Once L/R is locked at 20px, you only need to think about <strong>top and bottom</strong> padding (which changes between desktop and mobile). Everything else stays the same.</p>
+
+      <h3>Other quick rules</h3>
       <ul>
-        <li>Use <strong>%</strong> or <strong>rem</strong> for sections — they're automatically responsive.</li>
-        <li>Use <strong>px</strong> for small UI elements like buttons, icons, and logos.</li>
-        <li>Follow the <strong>8px spacing scale</strong>: 8, 16, 24, 32, 40, 48 — use multiples of 8 for everything.</li>
-        <li>If padding looks too big on mobile, switch from px to % or rem.</li>
+        <li>Use <strong>px</strong> for small UI elements: buttons, icons, logos.</li>
+        <li>Use <strong>rem</strong> for spacing tied to text (column inner padding).</li>
+        <li>Stick to the <strong>8px spacing scale</strong>: 8, 16, 24, 32, 40, 48 — multiples of 8 only.</li>
         <li>Set spacing globally in your theme/builder so one change updates the whole site.</li>
       </ul>
 
       <div class="callout example">
-        <span class="callout-label">Standard practice in the wild</span>
-        <strong>Section padding:</strong> <code class="inline">5%</code> top-bottom, <code class="inline">10%</code> left-right (responsive)<br>
-        <strong>Column padding:</strong> <code class="inline">2rem</code> (consistent with text)<br>
-        <strong>Button padding:</strong> <code class="inline">12px 24px</code> (fixed for balance)
+        <span class="callout-label">JC Standard Padding</span>
+        <strong>Section L/R padding:</strong> <code class="inline">20px</code> (desktop & mobile — same!)<br>
+        <strong>Section top-bottom:</strong> <code class="inline">80–120px</code> desktop / <code class="inline">40–60px</code> mobile<br>
+        <strong>Column inner padding:</strong> <code class="inline">2rem</code><br>
+        <strong>Button padding:</strong> <code class="inline">12px 24px</code>
       </div>
 
       <a href="#" class="back-top">↑ Back to top</a>
@@ -996,66 +1006,144 @@ footer .small {
     <div class="chapter-header">
       <div class="chapter-num">07</div>
       <div class="chapter-title-block">
-        <h2>Wireframe Padding: Desktop vs Mobile</h2>
-        <p class="chapter-intro">Concrete numbers you can copy directly into your designs. No guessing.</p>
+        <h2>Section-by-Section Workflow</h2>
+        <p class="chapter-intro">The fastest way to build a site: finish one section completely (desktop + mobile) before moving to the next. With L/R padding locked at 20px, every section becomes copy-paste ready.</p>
       </div>
     </div>
 
     <div class="body">
 
-      <h3>Desktop (Laptop / Monitor)</h3>
+      <h3>The Golden Rule</h3>
+      <div class="callout tip">
+        <span class="callout-label">JC Padding Standard</span>
+        <strong>Left & Right = 20px</strong> on every section — desktop and mobile, same value. Easy to remember, easy to copy.<br><br>
+        Only <strong>top & bottom</strong> changes between desktop and mobile.
+      </div>
 
-      <h4>Section (Hero / Main Blocks)</h4>
-      <ul>
-        <li>Top & Bottom padding: <strong>80px – 120px</strong></li>
-        <li>Left & Right padding: <strong>10%</strong> (relative to screen width)</li>
-      </ul>
+      <h3>The Workflow</h3>
+      <ol>
+        <li><strong>Pick one section</strong> (e.g., Hero).</li>
+        <li><strong>Build the desktop version</strong> with the standard padding below.</li>
+        <li><strong>Switch to mobile view</strong> and adjust top/bottom padding (L/R stays 20px).</li>
+        <li><strong>Save the section as a reusable block</strong>.</li>
+        <li><strong>Move to the next section</strong> and repeat.</li>
+      </ol>
 
-      <h4>Columns / Inner Content</h4>
-      <ul>
-        <li>Padding: <strong>40px</strong></li>
-        <li>Gap between columns: <strong>32px – 48px</strong></li>
-      </ul>
+      <p>Because every section uses the same 20px L/R padding, you can copy any section to a new project and it will already have the correct spacing.</p>
 
-      <h4>Text Blocks</h4>
-      <ul>
-        <li>Paragraph line-height: <strong>1.5rem</strong></li>
-        <li>Gap between sections: <strong>64px – 96px</strong></li>
-      </ul>
+      <h3>Standard Section Padding</h3>
 
-      <h3>Mobile (Phone / Small Screen)</h3>
+      <div class="phases">
 
-      <h4>Section (Hero / Main Blocks)</h4>
-      <ul>
-        <li>Top & Bottom padding: <strong>40px – 60px</strong></li>
-        <li>Left & Right padding: <strong>5%</strong></li>
-      </ul>
+        <!-- Hero -->
+        <div class="phase">
+          <div class="phase-header">
+            <span class="phase-num">SECTION</span>
+            <span class="phase-title">Hero / Main Blocks</span>
+          </div>
 
-      <h4>Columns / Inner Content</h4>
-      <ul>
-        <li>Padding: <strong>16px / 20px / 24px</strong></li>
-        <li>Columns auto-stack (single column view)</li>
-      </ul>
+          <h4>Desktop (build first)</h4>
+          <ul>
+            <li>Top & Bottom: <strong>80px – 120px</strong></li>
+            <li>Left & Right: <strong>20px</strong></li>
+          </ul>
 
-      <h4>Text Blocks</h4>
-      <ul>
-        <li>Paragraph line-height: <strong>1.2rem</strong></li>
-        <li>Gap between sections: <strong>32px – 48px</strong></li>
-      </ul>
+          <h4>Mobile (do this next)</h4>
+          <ul>
+            <li>Top & Bottom: <strong>40px – 60px</strong></li>
+            <li>Left & Right: <strong>20px</strong> ← same as desktop</li>
+          </ul>
+
+          <div class="callout example">
+            <span class="callout-label">Real Hero example</span>
+            <strong>Desktop:</strong> <code class="inline">padding: 100px 20px;</code><br>
+            <strong>Mobile:</strong> <code class="inline">padding: 50px 20px;</code>
+          </div>
+        </div>
+
+        <!-- Inner Content -->
+        <div class="phase">
+          <div class="phase-header">
+            <span class="phase-num">SECTION</span>
+            <span class="phase-title">Columns / Inner Content</span>
+          </div>
+
+          <h4>Desktop (build first)</h4>
+          <ul>
+            <li>Inner padding: <strong>40px</strong></li>
+            <li>Gap between columns: <strong>32px – 48px</strong></li>
+          </ul>
+
+          <h4>Mobile (do this next)</h4>
+          <ul>
+            <li>Inner padding: <strong>16px / 20px / 24px</strong></li>
+            <li>Columns auto-stack into one column</li>
+          </ul>
+        </div>
+
+        <!-- Text Blocks -->
+        <div class="phase">
+          <div class="phase-header">
+            <span class="phase-num">SECTION</span>
+            <span class="phase-title">Text Blocks</span>
+          </div>
+
+          <h4>Desktop (build first)</h4>
+          <ul>
+            <li>Paragraph line-height: <strong>1.5rem</strong></li>
+            <li>Gap between sections: <strong>64px – 96px</strong></li>
+          </ul>
+
+          <h4>Mobile (do this next)</h4>
+          <ul>
+            <li>Paragraph line-height: <strong>1.2rem</strong></li>
+            <li>Gap between sections: <strong>32px – 48px</strong></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <h3>Quick Reference Table</h3>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr>
+              <th>Section</th>
+              <th>Desktop top/bottom</th>
+              <th>Mobile top/bottom</th>
+              <th>L/R (both)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>Hero</strong></td>
+              <td>80–120px</td>
+              <td>40–60px</td>
+              <td><strong>20px</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Standard sections</strong></td>
+              <td>80px</td>
+              <td>40px</td>
+              <td><strong>20px</strong></td>
+            </tr>
+            <tr>
+              <td><strong>Compact sections</strong></td>
+              <td>64px</td>
+              <td>32px</td>
+              <td><strong>20px</strong></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
       <h3>Pro tips</h3>
       <ul>
-        <li><strong>Desktop:</strong> mix px and % — px for fixed heights, % for responsive widths.</li>
-        <li><strong>Mobile:</strong> use less padding. Don't waste tiny screens.</li>
-        <li><strong>Stick to the 8px system</strong> (8, 16, 24, 32, 40...) for uniform spacing.</li>
+        <li><strong>Save sections as reusable blocks</strong> in your builder (Elementor, Divi, Kadence). One section, infinite reuse.</li>
+        <li><strong>Stick to the 8px scale</strong> for top/bottom values: 8, 16, 24, 32, 40, 48, 64, 80, 96, 120.</li>
         <li><strong>Test in 3 views:</strong> Desktop, Tablet, Mobile. Tablet often breaks first.</li>
+        <li><strong>Don't change L/R padding per section.</strong> If you do, your site loses its consistent rhythm.</li>
       </ul>
-
-      <div class="callout example">
-        <span class="callout-label">Real Hero Section example</span>
-        <strong>Desktop:</strong> <code class="inline">padding: 100px top-bottom, 10% left-right</code><br>
-        <strong>Mobile:</strong> <code class="inline">padding: 50px top-bottom, 5% left-right</code>
-      </div>
 
       <a href="#" class="back-top">↑ Back to top</a>
     </div>
